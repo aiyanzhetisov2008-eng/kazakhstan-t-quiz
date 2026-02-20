@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<title>Қазақстан тарихы</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: url("kazakhstan-bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+#timer {
+    display: none;  /* бастапқыда жасырылған */
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    width: 150px;
+    height: 150px;
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;           
+    border: 4px solid #333;       
+    text-align: center;
+    line-height: 150px;           
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    z-index: 1000;
+    font-family: 'Courier New', Courier, monospace; 
+    user-select: none;
+}
+
+h1 {
+    margin-top: 50px;
+    font-size: 40px;
+    text-shadow: 2px 2px 5px black;
+}
+
+#question {
+    font-size: 28px;
+    font-weight: 900;
+    margin: 20px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    color: #003366;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+#quizBox, #timerBox {
+    margin-top: 20px;
+}
+
+#answers button {
+    display: block;
+    width: 300px;
+    margin: 10px auto;
+}
+
+#feedbackBox {
+    display: none;
+    margin: 20px auto;
+    padding: 20px;
+    width: 350px;
+    background-color: rgba(255,255,255,0.5);
+    color: black;
+    border-radius: 12px;
+}
+
+.resultBox {
+    display: none;
+    margin-top: 40px;
+}
+
+.resultInner {
+    background-color: rgba(255,255,255,0.6);
+    color: black;
+    padding: 25px;
+    width: 400px;
+    margin: 0 auto;
+    border-radius: 12px;
+}
+
+.resultInner button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.resultInner h2, .resultInner h3 {
+    font-weight: 900;
+    font-family: 'Arial Black', Arial, sans-serif;
+}
+
+#feedback {
+    font-weight: 700;
+    font-size: 22px;
+}
+
+/* Ережелер модаль */
+#rulesModal {
+    display:none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 700px;
+    width: 90%;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.95);
+    color: black;
+    border-radius: 12px;
+    text-align: left;
+    line-height: 1.5;
+    font-size: 16px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    z-index: 2000;
+}
+
+#gameStartContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    min-height: 400px;   /* биіктік көбейттік */
+    background: url('game-bg.jpg') no-repeat center center;
+    background-size: cover;
+    display: none;
+    flex-direction: column;        /* МАҢЫЗДЫ */
+    justify-content: center;       /* батырма ортасында */
+    align-items: center;           /* көлденең ортасы */
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    padding: 30px;
+    z-index: 6000;
+}
+
+#gameStartContainer button {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    transition: 0.3s;
+}
+#gameStartContainer button:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+#welcomeScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("kazakhstan-bg.jpg") no-repeat center center;
+    background-size: cover;
+    z-index: 10000;
+}
+
+/* Қош келдіңіз мәтіні */
+#welcomeScreen h1 {
+    position: absolute;
+    top: 60px;             /* жоғарыда тұрады */
+    width: 100%;
+    text-align: center;
+    font-size: 70px;
+    font-weight: 900;
+    text-shadow: 3px 3px 10px black;
+}
+
+#welcomeScreen h2 {
+    position: absolute;
+    top: 180px;          /* Қош келдіңіздің астында */
+    width: 100%;
+    text-align: center;
+    font-size: 20px;     /* Кішірек */
+    font-weight: 500;
+    text-shadow: 2px 2px 6px black;
+}
+
+#fullGameBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('full-screen-bg.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: 500; /* кіші фонның артында */
+    display: none; /* бастапқыда жасырылған */
+}
+
+/* Кіру батырмасы */
+#enterBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    font-size: 20px;
+}
+
+#menuScreen {
+    position: relative;
+}
+.back-btn {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.6); /* қара жартылай фон */
+    color: white; /* мәтін ақ */
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 1000; /* басқа элементтердің үстінде тұруы үшін */
+}
+
+.back-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+#miniGameRules {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.warningBox {
+    background: rgba(255, 255, 255, 0.7); /* ақ фон, кішігірім прозрачный */
+    width: 520px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+
+    position: fixed;       /* экранға қатысты */
+    top: 50%;              /* вертикалды центр */
+    left: 50%;             /* горизонталды центр */
+    transform: translate(-50%, -50%); /* толық центрлендіру */
+
+    text-align: left;      /* мәтін сол жақ шетінде */
+    color: black;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+.warningTitle{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+    text-align: left;   /* Сол жақ */
+}
+
+.warningText{
+    font-size: 16px;
+    color: black;
+    line-height: 1.6;
+    text-align: left;   /* Сол жақ */
+}
+
+</style>
+</head>
+<body>
+<audio id="bgMusic"></audio>
+
+<div class="music-controls">
+    <button id="prevMusicBtn">⬅️</button>
+    <button id="musicBtn">🔇</button>
+    <button id="nextMusicBtn">➡️</button>
+</div>
+
+<!-- Дыбыс файлы -->
+<audio id="clickSound" src="click.mp3"></audio>
+<audio id="correctSound" src="correct.mp3"></audio>
+<audio id="wrongSound" src="wrong.mp3"></audio>
+
+<!-- Ойын толық экран фоны -->
+<div id="fullGameBg" style="display:none;"></div>
+
+<div id="welcomeScreen">
+    <h1>Қош келдіңіз!</h1>
+    <h2>(Қазақстан тарихы сұрақтары)</h2>
+    <button id="enterBtn">Кіру</button>
+</div>
+
+<div id="timer">20</div>
+
+<h1>Қазақстан тарихы сұрақтары</h1>
+
+<!-- Бастау батырмасы -->
+<button id="startBtn">Бастау</button>
+<div id="startWarning" class="warningBox">
+    <div class="warningTitle">Ескерту!</div>
+    <div class="warningText">
+        Ойынды бастамас бұрын ережелермен толық әрі мұқият танысып 
+        шығуыңызды сұраймыз. Ережелермен танысу үшін 
+        «Ережелерді оқу» батырмасын басыңыз.
+    </div>
+</div>
+
+<button id="backToWelcomeBtn" class="back-btn" style="display:none;">← Артқа</button>
+
+<!-- Ереже батырмасы -->
+<div style="margin-top: 20px; text-align: left; padding-left: 20px;">
+    <button id="rulesBtn">Ережелерді оқу</button>
+</div>
+
+<!-- Модаль тәрізді ережелер контейнері -->
+<div id="rulesModal">
+  <h2>Тест ережелері</h2>
+  <p>
+    Бұл сайтта Қазақстан тарихына қатысты тест сұрақтары қойылады. Әр сұраққа жауап беруге 20 секунд уақыт беріледі. Дұрыс жауап берсеңіз, 5 балл аласыз; ал қате жауап болса, 0 балл есептеледі.
+  </p>
+  <p>
+    Егер сұраққа дұрыс жауап берсеңіз, келесі сұраққа өтуге мүмкіндік аласыз. Қате жауап берген жағдайда сізге екі нұсқа ұсынылады: <strong>ойын ойнау</strong> немесе <strong>бастартуға</strong> таңдау.
+  </p>
+  <p>
+    - Ойын ойнау батырмасын таңдасаңыз, кішігірім, көңілді ойын басталады. Егер ойынды ұтсаңыз, келесі сұраққа жауап беру мүмкіндігі беріледі, бірақ қате жауап берген сұрағыңыз 0 балл болып есептеледі.<br>
+    - Егер ойынды ұтылсаңыз немесе ойыннан бас тартсаңыз, сол сәттегі жинаған ұпайыңыз көрсетіледі, әрі сол сұраққа қайта жауап беру мүмкіндігі болмайды.
+  </p>
+  <p>
+    Егер берілген уақыт ішінде жауап бермесеңіз, ол сұрақ қате болып есептеледі және ойын ойнау немесе бастартуға таңдау беріледі. Барлық тест бойынша 20 сұрақ ұсынылады.
+  </p>
+  <div style="text-align:right;">
+    <button id="closeRulesBtn" style="padding:8px 15px; font-size:14px; border:none; border-radius:6px; cursor:pointer;">Жабу</button>
+  </div>
+</div>
+
+<div id="quizBox" style="display:none;">
+    <p id="question"></p>
+    <div id="answers"></div>
+
+    <div id="feedbackBox">
+        <p id="feedback"></p>
+        <button id="nextBtn">Келесі</button>
+        <button id="playGameBtn">Ойын ойнау</button>
+        <button id="skipBtn">Бастарту</button>
+    </div>
+</div>
+
+<div id="resultBox" class="resultBox">
+    <div class="resultInner">
+        <h2>Сіз барлық сұрақтарға жауап бердіңіз!</h2>
+        <h3 id="finalScore"></h3>
+        <button id="restartBtn">Тестті тағы да өту</button>
+    </div>
+</div>
+
+<div id="gameStartContainer">
+
+    <button id="startMiniGameBtn" style="
+        padding: 15px 25px; 
+        font-size: 20px; 
+        border: none; 
+        border-radius: 8px; 
+        cursor: pointer; 
+        background-color: rgba(0,0,0,0.6); 
+        color: white; 
+        transition: 0.3s;
+    ">Ойынды бастау</button>
+
+    <!-- Ойын ережелері блок -->
+    <div id="miniGameRules" style="
+        margin-top: 30px;
+        background-color: white;
+        color: black;
+        padding: 15px 20px;
+        border-radius: 12px;
+        max-width: 350px;
+        text-align: left;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    ">
+        <h3>Ойын ережесі:</h3>
+        <p>
+Сізге 9 жәшік ұсынылады. Әр жәшіктің ішінде әртүрлі сандар орналасады. Берілген сандарды мұқият қарап, есте сақтауыңыз қажет.
+
+Есте сақтап болған соң, «Жасыру» батырмасын басасыз. Осыдан кейін жәшіктердегі сандар жасырылып, экранда екі сан көрсетіледі.
+
+Сіздің міндетіңіз — көрсетілген сандарды жасырылған жәшіктердің ішінен дұрыс тауып таңдау.
+</p>
+    </div>
+</div>
+
+<script>
+// --- Сұрақтар ---
+const questions = [
+{ "question": "Қазақ хандығының негізін қалаушы кім?", "answers": ["Керей хан", "Жәнібек хан", "Абылай хан", "Тәуке хан"], "correct": "Керей хан" },
+  { "question": "Қазақ хандығы қай жылы құрылды?", "answers": ["1465", "1500", "1450", "1490"], "correct": "1465" },
+  { "question": "«Жеті жарғы» заңдар жинағын кім шығарды?", "answers": ["Тәуке хан", "Абылай хан", "Кенесары Қасымұлы", "Есім хан"], "correct": "Тәуке хан" },
+  { "question": "Алтын Орда мемлекетінің астанасы қай қала болды?", "answers": ["Сарай-Бату", "Сауран", "Түркістан", "Отырар"], "correct": "Сарай-Бату" },
+  { "question": "Қыпшақ хандарының мемлекетін қай ғасырда құрды?", "answers": ["IX–X ғғ.", "XI–XII ғғ.", "XIII–XIV ғғ.", "XV–XVI ғғ."], "correct": "XI–XII ғғ." },
+  { "question": "Абылай хан қай ғасырда билік құрды?", "answers": ["XV ғ.", "XVIII ғ.", "XIX ғ.", "XVII ғ."], "correct": "XVIII ғ." },
+  { "question": "Кенесары Қасымұлы көтерілісі қай жылдары болды?", "answers": ["1837–1847", "1843–1857", "1860–1870", "1780–1790"], "correct": "1837–1847" },
+  { "question": "Қазақ КСР ресми түрде қай жылы құрылды?", "answers": ["1920", "1936", "1940", "1950"], "correct": "1936" },
+  { "question": "Тәуелсіз Қазақстан мемлекеті қай жылы жарияланды?", "answers": ["1990", "1991", "1992", "1993"], "correct": "1991" },
+  { "question": "Қазақстанның алғашқы президенті кім?", "answers": ["Нұрсұлтан Назарбаев", "Дінмұхамед Қонаев", "Абылай хан", "Кенесары"], "correct": "Нұрсұлтан Назарбаев" },
+  { "question": "Астана қаласы қай жылы жаңа астана болып жарияланды?", "answers": ["1995", "1997", "2000", "2005"], "correct": "1997" },
+  { "question": "Қазақ жерінде өмір сүрген ежелгі тайпалардың бірі?", "answers": ["Сақтар", "Римдіктер", "Византийлер", "Мысырлықтар"], "correct": "Сақтар" },
+  { "question": "Түркі қағанатының астанасы қай қала болған?", "answers": ["Түркістан", "Балық", "Отырар", "Сауран"], "correct": "Балық" },
+  { "question": "Ұлы Жібек жолы Қазақстанның қай аймағынан өтті?", "answers": ["Солтүстік", "Орталық", "Оңтүстік", "Батыс"], "correct": "Оңтүстік" },
+  { "question": "Бәйдібек би қай тарихи кезеңде өмір сүрген?", "answers": ["Қазақ хандығының алғашқы жылдары", "Ресей империясы кезеңі", "Кеңес дәуірі", "XX ғасыр"], "correct": "Қазақ хандығының алғашқы жылдары" },
+  { "question": "XIX ғасырда қазақ қоғамында қандай экономикалық өзгерістер болды?", "answers": ["Жерді ұжымдық пайдалану артты", "Малы мен шаруашылығы дамыды", "Қолөнер толық жойылды", "Қала мәдениеті тоқтады"], "correct": "Малы мен шаруашылығы дамыды" },
+  { "question": "Орта жүздің ханы кім болды XIX ғасырда?", "answers": ["Абылай хан", "Кенесары", "Жәнібек хан", "Уәли хан"], "correct": "Уәли хан" },
+  { "question": "XIX ғасырда қазақ жерінде қандай ұлттар көшіп келді?", "answers": ["Қытай", "Ресей және орыс шаруалары", "Үнді", "Иран"], "correct": "Ресей және орыс шаруалары" },
+  { "question": "1917 жылғы төңкерістен кейін қазақ жерінде құрылды:", "answers": ["Қазақ КСР", "Қазақ автономиясы", "Қазақ хандығы", "Қазақ республикасы"], "correct": "Қазақ автономиясы" },
+  { "question": "1930–1950 жылдары Қазақстанда не болды?", "answers": ["Индустриализация", "Ашаршылық", "Ұлы Отан соғысы", "Барлығы дұрыс"], "correct": "Барлығы дұрыс" },
+  { "question": "Қазақстандағы Қарулы Күштердің негізі қашан қаланды?", "answers": ["1992", "1991", "1995", "2000"], "correct": "1992" },
+  { "question": "Елтаңбаның қазіргі нұсқасы қай жылы бекітілді?", "answers": ["1992", "1993", "1995", "1991"], "correct": "1992" }];
+
+// --- Айнымалылар ---
+let current = 0;
+let score = 0;
+let timer;
+let timeLeft = 30;
+let selectedQuestions = [];
+
+// --- Элементтер ---
+const startBtn = document.getElementById("startBtn");
+const quizBox = document.getElementById("quizBox");
+const questionEl = document.getElementById("question");
+const answersDiv = document.getElementById("answers");
+const feedbackBox = document.getElementById("feedbackBox");
+const feedback = document.getElementById("feedback");
+const nextBtn = document.getElementById("nextBtn");
+const playGameBtn = document.getElementById("playGameBtn");
+const skipBtn = document.getElementById("skipBtn");
+const timerEl = document.getElementById("timer");
+const resultBox = document.getElementById("resultBox");
+const finalScore = document.getElementById("finalScore");
+const restartBtn = document.getElementById("restartBtn");
+
+// --- Аралас функция ---
+function shuffleArray(array){
+    for(let i=array.length-1; i>0; i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+startBtn.addEventListener("click", () => {
+    document.getElementById("startWarning").style.display = "none";
+
+    shuffleArray(questions);
+    selectedQuestions = questions.slice(0, 20);
+
+    startBtn.style.display = "none";
+    rulesBtn.style.display = "none";
+    backToWelcomeBtn.style.display = "none";
+
+    timerEl.style.display = "block";
+    quizBox.style.display = "block";
+
+    showQuestion();
+});
+
+// --- Сұрақ көрсету ---
+function showQuestion(){
+    const q = selectedQuestions[current];
+    questionEl.innerText = `${current + 1}. ${q.question}`;
+    answersDiv.innerHTML = "";
+    feedbackBox.style.display="none";
+    timeLeft = 20;
+    timerEl.innerText = timeLeft;
+    clearInterval(timer);
+    timer = setInterval(() => {
+        timeLeft--;
+        timerEl.innerText = timeLeft;
+if(timeLeft <= 5){
+    timerEl.style.background = "red";
+    timerEl.style.color = "white";
+} else {
+    timerEl.style.background = "rgba(255,255,255,0.8)";
+    timerEl.style.color = "black";
+}
+        if(timeLeft <= 0){
+            clearInterval(timer);
+            handleWrongAnswer();
+        }
+    }, 1000);
+
+    let shuffledAnswers = [...q.answers];
+    shuffleArray(shuffledAnswers);
+    shuffledAnswers.forEach(answer=>{
+        const btn = document.createElement("button");
+        btn.innerText = answer;
+        btn.onclick = () => {
+    clearInterval(timer);
+    Array.from(answersDiv.children).forEach(b=>b.disabled=true);
+
+    if(answer === q.correct){
+        btn.style.backgroundColor="green";
+        feedback.innerText="Дұрыс! 5 балл";
+        feedback.style.color="green";
+        score += 5;
+        feedbackBox.style.display="block";
+        nextBtn.style.display="inline-block";
+        playGameBtn.style.display="none";
+        skipBtn.style.display="none";
+
+        document.getElementById("correctSound").currentTime = 0;
+        document.getElementById("correctSound").play();
+    } else {
+        btn.style.backgroundColor="red";
+        handleWrongAnswer();
+        document.getElementById("wrongSound").currentTime = 0;
+        document.getElementById("wrongSound").play();
+    }
+};
+        answersDiv.appendChild(btn);
+    });
+}
+
+// --- Қате жауап ---
+function handleWrongAnswer(){
+    Array.from(answersDiv.children).forEach(b=>{
+        b.disabled = true;
+        if(b.innerText === selectedQuestions[current].correct){
+            b.style.backgroundColor = "green";
+        }
+    });
+    feedback.innerText="Қате! 0 балл";
+    feedback.style.color="red";
+    feedbackBox.style.display="block";
+    nextBtn.style.display="none";
+    playGameBtn.style.display="inline-block";
+    skipBtn.style.display="inline-block";
+
+    // ❌ Қате дыбысты қосу
+    const wrongSound = document.getElementById("wrongSound");
+    wrongSound.currentTime = 0;
+    wrongSound.play();
+}
+// --- Келесі сұрақ ---
+nextBtn.addEventListener("click", ()=>{
+    current++;
+    if(current < selectedQuestions.length){
+        showQuestion();
+    } else {
+        showResults();
+    }
+});
+
+// --- Бастарту батырмасы ---
+skipBtn.addEventListener("click", ()=>{ 
+    showResults(true);   // 🔥 failed = true
+});
+
+function showResults(failed = false){
+    clearInterval(timer);
+    quizBox.style.display = "none";
+    timerEl.style.display = "none";
+    resultBox.style.display = "block";
+
+    backToWelcomeBtn.style.display = "none";
+
+    const total = selectedQuestions.length * 5;
+    const percent = Math.round((score / total) * 100);
+
+    if(failed){
+        document.querySelector(".resultInner h2").innerText =
+            "Сіз барлық сұрақтарға жауап бере алмадыңыз!";
+    } else {
+        document.querySelector(".resultInner h2").innerText =
+            "Сіз барлық сұрақтарға жауап бердіңіз!";
+    }
+
+    finalScore.innerText =
+        `Жалпы ұпайыңыз: ${score} балл\nНәтиже: ${percent}%`;
+
+    showGrade(percent);
+}
+
+function showGrade(percent){
+    let gradeText = "";
+
+    if(percent >= 85){
+        gradeText = "🏆 Өте жақсы!";
+    } else if(percent >= 60){
+        gradeText = "👍 Жақсы!";
+    } else if(percent >= 40){
+        gradeText = "🙂 Орташа!";
+    } else {
+        gradeText = "📚 Қайталап оқу керек!";
+    }
+
+    finalScore.innerText += `\nБаға: ${gradeText}`;
+}
+
+function boxNumberGame({ showFullBg = false } = {}) {
+    const popup = document.createElement("div");
+    popup.style.position = "fixed";
+    popup.style.top = "50%";
+    popup.style.left = "50%";
+    popup.style.transform = "translate(-50%, -50%)";
+    popup.style.background = "white";
+    popup.style.color = "black";
+    popup.style.padding = "25px";
+    popup.style.borderRadius = "15px";
+    popup.style.boxShadow = "0 0 25px black";
+    popup.style.textAlign = "center";
+    popup.style.zIndex = "6000";
+
+    popup.innerHTML = "<h3>Сандарды есте сақта!</h3>";
+    document.body.appendChild(popup);
+
+    const numbers = [1,2,3,4,5,6];
+    shuffleArray(numbers);
+
+    let targetNumbers = [];
+    while(targetNumbers.length < 2) {
+        const n = numbers[Math.floor(Math.random() * numbers.length)];
+        if(!targetNumbers.includes(n)) targetNumbers.push(n);
+    }
+
+    const grid = document.createElement("div");
+    grid.style.display = "grid";
+    grid.style.gridTemplateColumns = "repeat(3, 80px)";
+    grid.style.gap = "10px";
+    grid.style.marginTop = "20px";
+    popup.appendChild(grid);
+
+    const boxes = [];
+    for(let i=0;i<6;i++){
+        const box = document.createElement("div");
+        box.style.width = "80px";
+        box.style.height = "80px";
+        box.style.background = "#4da6ff";
+        box.style.display = "flex";
+        box.style.alignItems = "center";
+        box.style.justifyContent = "center";
+        box.style.fontSize = "26px";
+        box.style.fontWeight = "bold";
+        box.style.borderRadius = "10px";
+        box.innerText = numbers[i];
+        boxes.push(box);
+        grid.appendChild(box);
+    }
+
+    const hideBtn = document.createElement("button");
+    hideBtn.innerText = "Жасыру";
+    hideBtn.style.marginTop = "20px";
+    popup.appendChild(hideBtn);
+
+    let gameFinished = false;
+
+    const clickSound = document.getElementById("clickSound");
+
+    hideBtn.onclick = () => {
+        clickSound.currentTime = 0;  // дыбысты қайта бастау
+        clickSound.play();
+
+        boxes.forEach(box => box.innerText = "?");
+        hideBtn.remove();
+
+        const info = document.createElement("p");
+        info.innerHTML = `<b>Табу керек сандар:</b> ${targetNumbers.join(", ")}`;
+        info.style.marginTop = "15px";
+        popup.appendChild(info);
+
+        let correctClicks = 0;
+
+        boxes.forEach((box, idx) => {
+    box.style.cursor = "pointer";
+    box.onclick = () => {
+        if(gameFinished) return;
+
+        const numberInside = numbers[idx];
+        if(targetNumbers.includes(numberInside)){
+            box.innerText = numberInside;
+            box.style.background = "green";
+            box.style.pointerEvents = "none";
+            correctClicks++;
+
+            document.getElementById("correctSound").currentTime = 0;
+            document.getElementById("correctSound").play();
+
+            if(correctClicks === 2){
+                gameFinished = true;
+                setTimeout(() => {
+                    popup.remove();
+                    if(showFullBg) document.getElementById("fullGameBg").style.display = "none";
+                    nextAfterGame();
+                }, 700);
+            }
+        } else {
+            gameFinished = true;
+            box.style.background = "red";
+
+            document.getElementById("wrongSound").currentTime = 0;
+            document.getElementById("wrongSound").play();
+
+            setTimeout(() => {
+                popup.remove();
+                if(showFullBg) document.getElementById("fullGameBg").style.display = "none";
+                showResults(true);
+            }, 700);
+        }
+    };
+});
+    };
+}
+
+playGameBtn.addEventListener("click", () => {
+    const gameStartContainer = document.getElementById("gameStartContainer");
+    gameStartContainer.style.display = "flex";  
+    document.getElementById("fullGameBg").style.display = "block"; 
+
+    timerEl.style.display = "none"; // ❌ таймерді ойын фондарында жасыру
+});
+
+function nextAfterGame(){
+    current++;
+    if(current < selectedQuestions.length){
+        showQuestion();
+    } else {
+        // Ойын аяқталған кезде толық фонды жасыру
+        document.getElementById("fullGameBg").style.display = "none";
+        showResults();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const rulesBtn = document.getElementById("rulesBtn");
+    const rulesModal = document.getElementById("rulesModal");
+    const closeRulesBtn = document.getElementById("closeRulesBtn");
+    const startBtn = document.getElementById("startBtn");
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const enterBtn = document.getElementById("enterBtn");
+    const fullGameBg = document.getElementById("fullGameBg");
+    const gameStartContainer = document.getElementById("gameStartContainer");
+
+    // Ережелерді оқу батырмасы
+    rulesBtn.addEventListener("click", () => {
+        document.getElementById("rulesModal").style.display = "flex";
+        backToWelcomeBtn.style.display = "none"; // 🔥 ОСЫ
+        rulesModal.style.display = "block";
+        rulesBtn.style.display = "none"; // модаль ашылғанда уақытша жасыру
+    });
+
+    closeRulesBtn.addEventListener("click", () => {
+        document.getElementById("rulesModal").style.display = "none";
+        backToWelcomeBtn.style.display = "inline-block"; // 🔥 ҚАЙТА ШЫҒАДЫ
+        rulesModal.style.display = "none";
+        rulesBtn.style.display = "inline-block"; // қайта көрсету
+    });
+
+    // Қош келдіңіз экраны
+    enterBtn.addEventListener("click", () => {
+        welcomeScreen.style.display = "none";
+    });
+
+    // Ойын ойнау батырмасы (кіші фонмен)
+    playGameBtn.addEventListener("click", () => {
+        gameStartContainer.style.display = "flex";   // кіші фон
+        fullGameBg.style.display = "block";          // толық фон
+    });
+
+    // Тестті қайта бастау
+    restartBtn.addEventListener("click", () => {
+
+    // Бастау бетін көрсету
+        startBtn.style.display = "inline-block";
+        rulesBtn.style.display = "inline-block";
+        backToWelcomeBtn.style.display = "inline-block";
+
+    // Ескерту қайта шығу керек
+        document.getElementById("startWarning").style.display = "block";
+
+    // Тест бөліктерін жасыру
+        quizBox.style.display = "none";
+        timerEl.style.display = "none";
+        resultBox.style.display = "none";
+
+        clearInterval(timer);
+        quizBox.style.display = "none";
+        timerEl.style.display = "none";
+        feedbackBox.style.display = "none";
+        resultBox.style.display = "none";
+        gameStartContainer.style.display = "none";
+        fullGameBg.style.display = "none";
+
+        current = 0;
+        score = 0;
+
+        startBtn.style.display = "inline-block";  // бастау батырмасы
+        rulesBtn.style.display = "inline-block";  // ережелерді оқу батырмасы
+        backToWelcomeBtn.style.display = "inline-block";
+        rulesModal.style.display = "none";        // егер ашық болса, жабу
+    });
+});
+
+document.getElementById("startMiniGameBtn").addEventListener("click", () => {
+    const fullBg = document.getElementById("fullGameBg");
+    fullBg.style.display = "block";       
+    document.getElementById("gameStartContainer").style.display = "none";
+
+    timerEl.style.display = "none"; // ❌ таймерді жасыру
+    boxNumberGame({ showFullBg: true });
+});
+
+const backToWelcomeBtn = document.getElementById("backToWelcomeBtn");
+
+backToWelcomeBtn.addEventListener("click", () => {
+    // Барлық тест элементтерін жасыру
+    quizBox.style.display = "none";
+    resultBox.style.display = "none";
+    timerEl.style.display = "none";
+    feedbackBox.style.display = "none";
+    rulesModal.style.display = "none";
+    gameStartContainer.style.display = "none";
+    fullGameBg.style.display = "none";
+
+    // Бастау батырмаларын жасыру
+    startBtn.style.display = "none";
+    rulesBtn.style.display = "none";
+    backToWelcomeBtn.style.display = "none";
+
+    // Қош келдіңіз экранын көрсету
+    welcomeScreen.style.display = "block";
+
+    // Айнымалыларды reset жасау
+    current = 0;
+    score = 0;
+
+    // 🎵 Музыка тоқтату
+    music.pause();
+    music.currentTime = 0;  // басынан бастау
+    musicBtn.innerText = "Музыка: Ойнату"; // батырманың мәтінін жаңарту
+});
+
+const clickSound = document.getElementById("clickSound");
+
+// Барлық негізгі батырмаларға дыбыс қосу
+const mainButtons = [
+  document.getElementById("enterBtn"),
+  document.getElementById("startBtn"),
+  document.getElementById("rulesBtn"),
+  document.getElementById("closeRulesBtn"),
+  document.getElementById("backToWelcomeBtn"),
+  document.getElementById("restartBtn"),
+  document.getElementById("startMiniGameBtn"),
+  document.getElementById("playGameBtn"),
+  document.getElementById("nextBtn"),
+  document.getElementById("skipBtn"),
+  document.getElementById("hideBtn")
+];
+
+mainButtons.forEach(btn => {
+    if(btn) {
+        btn.addEventListener("click", () => {
+            clickSound.currentTime = 0;
+            clickSound.play();
+        });
+    }
+});
+
+// ================= МУЗЫКА ЖҮЙЕСІ =================
+
+const musicList = [
+    "music1.mp3",
+    "music2.mp3",
+    "music3.mp3"
+];
+
+let currentTrack = 0;
+
+const bgMusic = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+const nextMusicBtn = document.getElementById("nextMusicBtn");
+const prevMusicBtn = document.getElementById("prevMusicBtn");
+
+// Бастапқыда музыка жоқ
+bgMusic.src = "";
+
+// 🔊 Enter басқанда автоматты қосу
+document.getElementById("enterBtn").addEventListener("click", () => {
+
+    currentTrack = 0;
+    bgMusic.src = musicList[currentTrack];
+    bgMusic.play();
+
+    musicBtn.innerText = "🔊";
+});
+
+// 🔇 Ойнату / Тоқтату
+musicBtn.addEventListener("click", () => {
+    if(bgMusic.paused){
+        bgMusic.play();
+        musicBtn.innerText = "🔊";
+    } else {
+        bgMusic.pause();
+        musicBtn.innerText = "🔇";
+    }
+});
+
+// ➡️ Келесі
+nextMusicBtn.addEventListener("click", () => {
+
+    currentTrack++;
+
+    if(currentTrack >= musicList.length){
+        currentTrack = 0;
+    }
+
+    bgMusic.src = musicList[currentTrack];
+    bgMusic.play();
+});
+
+// ⬅️ Алдыңғы
+prevMusicBtn.addEventListener("click", () => {
+
+    currentTrack--;
+
+    if(currentTrack < 0){
+        currentTrack = musicList.length - 1;
+    }
+
+    bgMusic.src = musicList[currentTrack];
+    bgMusic.play();
+});
+
+// 🔥 Welcome-ке қайтқанда музыка тоқтайды
+backToWelcomeBtn.addEventListener("click", () => {
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+    bgMusic.src = "";
+    musicBtn.innerText = "🔇";
+});
+
+</script>
+
+</body>
+</html>
