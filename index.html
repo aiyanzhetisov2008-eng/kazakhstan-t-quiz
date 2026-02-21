@@ -2,7 +2,7 @@
 <html lang="kk">
 <head>
 <meta charset="UTF-8">
-<title>Қазақстан тарихы</title>
+<title>History of Kazakhstan</title>
 <style>
 body {
     margin: 0;
@@ -15,7 +15,7 @@ body {
 }
 
 #timer {
-    display: none;  /* бастапқыда жасырылған */
+    display: none;  
     position: fixed;
     top: 50px;
     right: 50px;
@@ -118,7 +118,6 @@ button:hover {
     font-size: 22px;
 }
 
-/* Ережелер модаль */
 #rulesModal {
     display:none;
     position: fixed;
@@ -144,13 +143,13 @@ button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 450px;
-    min-height: 400px;   /* биіктік көбейттік */
+    min-height: 400px;   
     background: url('game-bg.jpg') no-repeat center center;
     background-size: cover;
     display: none;
-    flex-direction: column;        /* МАҢЫЗДЫ */
-    justify-content: center;       /* батырма ортасында */
-    align-items: center;           /* көлденең ортасы */
+    flex-direction: column;        
+    justify-content: center;      
+    align-items: center;          
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(0,0,0,0.6);
     padding: 30px;
@@ -182,10 +181,9 @@ button:hover {
     z-index: 10000;
 }
 
-/* Қош келдіңіз мәтіні */
 #welcomeScreen h1 {
     position: absolute;
-    top: 60px;             /* жоғарыда тұрады */
+    top: 60px;             
     width: 100%;
     text-align: center;
     font-size: 70px;
@@ -195,10 +193,10 @@ button:hover {
 
 #welcomeScreen h2 {
     position: absolute;
-    top: 180px;          /* Қош келдіңіздің астында */
+    top: 180px;         
     width: 100%;
     text-align: center;
-    font-size: 20px;     /* Кішірек */
+    font-size: 20px;     
     font-weight: 500;
     text-shadow: 2px 2px 6px black;
 }
@@ -211,11 +209,10 @@ button:hover {
     height: 100%;
     background: url('full-screen-bg.jpg') no-repeat center center;
     background-size: cover;
-    z-index: 500; /* кіші фонның артында */
-    display: none; /* бастапқыда жасырылған */
+    z-index: 500; 
+    display: none; 
 }
 
-/* Кіру батырмасы */
 #enterBtn {
     position: absolute;
     top: 50%;
@@ -233,14 +230,14 @@ button:hover {
     top: 50px;
     left: 10px;
     padding: 8px 16px;
-    background: rgba(0, 0, 0, 0.6); /* қара жартылай фон */
-    color: white; /* мәтін ақ */
+    background: rgba(0, 0, 0, 0.6); 
+    color: white; 
     border: none;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
-    z-index: 1000; /* басқа элементтердің үстінде тұруы үшін */
+    z-index: 1000; 
 }
 
 .back-btn:hover {
@@ -253,19 +250,29 @@ button:hover {
     border-radius: 10px;
 }
 
+#miniGameRules {
+    background-color: white;  
+    color: black;
+    padding: 15px 20px;
+    border-radius: 12px;
+    max-width: 350px;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
 .warningBox {
-    background: rgba(255, 255, 255, 0.7); /* ақ фон, кішігірім прозрачный */
+    background: rgba(255, 255, 255, 0.7); 
     width: 520px;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
 
-    position: fixed;       /* экранға қатысты */
-    top: 50%;              /* вертикалды центр */
-    left: 50%;             /* горизонталды центр */
-    transform: translate(-50%, -50%); /* толық центрлендіру */
+    position: fixed;      
+    top: 50%;             
+    left: 50%;            
+    transform: translate(-50%, -50%); 
 
-    text-align: left;      /* мәтін сол жақ шетінде */
+    text-align: left;      
     color: black;
     line-height: 1.5;
     font-size: 16px;
@@ -276,14 +283,14 @@ button:hover {
     font-weight: bold;
     color: black;
     margin-bottom: 10px;
-    text-align: left;   /* Сол жақ */
+    text-align: left;  
 }
 
 .warningText{
     font-size: 16px;
     color: black;
     line-height: 1.6;
-    text-align: left;   /* Сол жақ */
+    text-align: left;   
 }
 
 </style>
@@ -297,60 +304,54 @@ button:hover {
     <button id="nextMusicBtn">➡️</button>
 </div>
 
-<!-- Дыбыс файлы -->
 <audio id="clickSound" src="click.mp3"></audio>
 <audio id="correctSound" src="correct.mp3"></audio>
 <audio id="wrongSound" src="wrong.mp3"></audio>
 
-<!-- Ойын толық экран фоны -->
 <div id="fullGameBg" style="display:none;"></div>
 
 <div id="welcomeScreen">
-    <h1>Қош келдіңіз!</h1>
-    <h2>(Қазақстан тарихы сұрақтары)</h2>
-    <button id="enterBtn">Кіру</button>
+    <h1>Welcome!</h1>
+    <h2>(History of Kazakhstan questions)</h2>
+    <button id="enterBtn">Login</button>
 </div>
 
 <div id="timer">20</div>
 
-<h1>Қазақстан тарихы сұрақтары</h1>
+<h1>History of Kazakhstan questions</h1>
 
-<!-- Бастау батырмасы -->
-<button id="startBtn">Бастау</button>
+<button id="startBtn">Start</button>
 <div id="startWarning" class="warningBox">
-    <div class="warningTitle">Ескерту!</div>
+    <div class="warningTitle">Warning!</div>
     <div class="warningText">
-        Бастамас бұрын ережелермен толық әрі мұқият танысып 
-        шығуыңызды сұраймыз. Ережелермен танысу үшін 
-        «Ережелерді оқу» батырмасын басыңыз.
+        Before starting, please read and carefully review all the rules. 
+        To view the rules, click the "Read Rules" button.
     </div>
 </div>
 
-<button id="backToWelcomeBtn" class="back-btn" style="display:none;">← Артқа</button>
+<button id="backToWelcomeBtn" class="back-btn" style="display:none;">← Back</button>
 
-<!-- Ереже батырмасы -->
 <div style="margin-top: 20px; text-align: left; padding-left: 20px;">
-    <button id="rulesBtn">Ережелерді оқу</button>
+    <button id="rulesBtn">Read the Rules</button>
 </div>
 
-<!-- Модаль тәрізді ережелер контейнері -->
 <div id="rulesModal">
-  <h2>Тест ережелері</h2>
+  <h2>Test Rules</h2>
   <p>
-    Бұл сайтта Қазақстан тарихына қатысты тест сұрақтары қойылады. Әр сұраққа жауап беруге 20 секунд уақыт беріледі. Дұрыс жауап берсеңіз, 5 балл аласыз; ал қате жауап болса, 0 балл есептеледі.
+    This site contains test questions related to the history of Kazakhstan. You have 20 seconds to answer each question. If you answer correctly, you will earn 5 points; if your answer is wrong, you will get 0 points.
   </p>
   <p>
-    Егер сұраққа дұрыс жауап берсеңіз, келесі сұраққа өтуге мүмкіндік аласыз. Қате жауап берген жағдайда сізге екі нұсқа ұсынылады: <strong>ойын ойнау</strong> немесе <strong>бастартуға</strong> таңдау.
+    If you answer a question correctly, you will be allowed to move on to the next question. If your answer is wrong, you will be given two options: <strong>play a game</strong> or <strong>restart</strong>.
   </p>
   <p>
-    - Ойын ойнау батырмасын таңдасаңыз, кішігірім, көңілді ойын басталады. Егер ойынды ұтсаңыз, келесі сұраққа жауап беру мүмкіндігі беріледі, бірақ қате жауап берген сұрағыңыз 0 балл болып есептеледі.<br>
-    - Егер ойынды ұтылсаңыз немесе ойыннан бас тартсаңыз, сол сәттегі жинаған ұпайыңыз көрсетіледі, әрі сол сұраққа қайта жауап беру мүмкіндігі болмайды.
+    - If you choose the "play a game" option, a small, fun game will start. If you win the game, you will get a chance to answer the next question, but the question you got wrong will still count as 0 points.<br>
+    - If you lose the game or skip it, your current score will be displayed, and you will not be able to answer that question again.
   </p>
   <p>
-    Егер берілген уақыт ішінде жауап бермесеңіз, ол сұрақ қате болып есептеледі және ойын ойнау немесе бастартуға таңдау беріледі. Барлық тест бойынша 20 сұрақ ұсынылады.
+    If you do not answer within the given time, the question will be counted as wrong, and you will be given the option to play a game or restart. A total of 20 questions are offered in the test.
   </p>
   <div style="text-align:right;">
-    <button id="closeRulesBtn" style="padding:8px 15px; font-size:14px; border:none; border-radius:6px; cursor:pointer;">Жабу</button>
+    <button id="closeRulesBtn" style="padding:8px 15px; font-size:14px; border:none; border-radius:6px; cursor:pointer;">Close</button>
   </div>
 </div>
 
@@ -360,17 +361,17 @@ button:hover {
 
     <div id="feedbackBox">
         <p id="feedback"></p>
-        <button id="nextBtn">Келесі</button>
-        <button id="playGameBtn">Ойын ойнау</button>
-        <button id="skipBtn">Бастарту</button>
+        <button id="nextBtn">Next</button>
+        <button id="playGameBtn">Play Game</button>
+        <button id="skipBtn">Restart</button>
     </div>
 </div>
 
 <div id="resultBox" class="resultBox">
     <div class="resultInner">
-        <h2>Сіз барлық сұрақтарға жауап бердіңіз!</h2>
+        <h2>You have answered all the questions!</h2>
         <h3 id="finalScore"></h3>
-        <button id="restartBtn">Тестті тағы да өту</button>
+        <button id="restartBtn">Retake the Test</button>
     </div>
 </div>
 
@@ -385,9 +386,8 @@ button:hover {
         background-color: rgba(0,0,0,0.6); 
         color: white; 
         transition: 0.3s;
-    ">Ойынды бастау</button>
+    ">Start the game</button>
 
-    <!-- Ойын ережелері блок -->
     <div id="miniGameRules" style="
         margin-top: 30px;
         background-color: white;
@@ -398,118 +398,158 @@ button:hover {
         text-align: left;
         box-shadow: 0 0 15px rgba(0,0,0,0.3);
     ">
-        <h3>Ойын ережесі:</h3>
-        <p>
-Сізге 9 жәшік ұсынылады. Әр жәшіктің ішінде әртүрлі сандар орналасады. Берілген сандарды мұқият қарап, есте сақтауыңыз қажет.
+<h3>Game Rules:</h3>
+    <p>
+You will be presented with 9 boxes. Each box contains different numbers. You need to carefully look at the numbers and memorize them.
 
-Есте сақтап болған соң, «Жасыру» батырмасын басасыз. Осыдан кейін жәшіктердегі сандар жасырылып, экранда екі сан көрсетіледі.
+After memorizing, click the "Hide" button. The numbers in the boxes will then be hidden, and two numbers will be displayed on the screen.
 
-Сіздің міндетіңіз — көрсетілген сандарды жасырылған жәшіктердің ішінен дұрыс тауып таңдау.
+Your task is to correctly find and select the displayed numbers from the hidden boxes.
 </p>
     </div>
 </div>
 
 <script>
-// --- Сұрақтар ---
 const questions = [
-  { "question": "Қазақ жерінде өмір сүрген ежелгі тайпалардың бірі?", "answers": ["Сақтар", "Римдіктер", "Византийлер", "Мысырлықтар"], "correct": "Сақтар" },
-  { "question": "Алғашқы темір дәуірі Қазақстан жерінде қай жылдары басталды?", "answers": ["б.з.д. VIII ғ.", "б.з.д. I ғ.", "б.з.д. V ғ.", "б.з.д. X ғ."], "correct": "б.з.д. VIII ғ." },
-  { "question": "Түркі қағанатының астанасы қай қала болған?", "answers": ["Түркістан", "Балық", "Отырар", "Сауран"], "correct": "Балық" },
-  { "question": "Ұлы Жібек жолы Қазақстанның қай аймағынан өтті?", "answers": ["Солтүстік", "Орталық", "Оңтүстік", "Батыс"], "correct": "Оңтүстік" },
-  { "question": "Алтын Орда мемлекетінің астанасы қай қала болды?", "answers": ["Сарай-Бату", "Сауран", "Түркістан", "Отырар"], "correct": "Сарай-Бату" },
-  { "question": "Қыпшақ хандарының мемлекетін қай ғасырда құрды?", "answers": ["IX–X ғғ.", "XI–XII ғғ.", "XIII–XIV ғғ.", "XV–XVI ғғ."], "correct": "XI–XII ғғ." },
-  { "question": "Жеті жарғы заңдар жинағының авторы кім?", "answers": ["Тәуке хан", "Абылай хан", "Кенесары Қасымұлы", "Есім хан"], "correct": "Тәуке хан" },
-  { "question": "Бәйдібек би қай тарихи кезеңде өмір сүрген?", "answers": ["Қазақ хандығының алғашқы жылдары", "Ресей империясы кезеңі", "Кеңес дәуірі", "XX ғасыр"], "correct": "Қазақ хандығының алғашқы жылдары" },
-  { "question": "Қазақ хандығының негізін қалаушылар кімдер?", "answers": ["Керей және Жәнібек хан", "Абылай хан мен Тәуке хан", "Кенесары мен Жәңгір хан", "Есім хан мен Тәуке хан"], "correct": "Керей және Жәнібек хан" },
-  { "question": "Қазақ хандығы қай жылы құрылды?", "answers": ["1465", "1500", "1450", "1490"], "correct": "1465" },
-  { "question": "Қазақ хандығының алғашқы хандық билігі қай әулеттен шыққан?", "answers": ["Жәнібек – Керей", "Абылай – Тәуке", "Кенесары – Жәңгір", "Есім – Тәуке"], "correct": "Жәнібек – Керей" },
-  { "question": "Қазақ жерін XV–XVI ғасырларда басқарған хан кім болды?", "answers": ["Жәнібек хан", "Тәуке хан", "Абылай хан", "Кенесары Қасымұлы"], "correct": "Жәнібек хан" },
-  { "question": "XVII ғасырда Қазақ хандығының бөлінуі бойынша негізгі үш жүз қандай?", "answers": ["Кіші, Орта, Ұлы", "Солтүстік, Оңтүстік, Батыс", "Шығыс, Оңтүстік, Батыс", "Кіші, Орта, Шығыс"], "correct": "Кіші, Орта, Ұлы" },
-  { "question": "XV–XVIII ғасырларда Қазақ хандығының астанасы қай қала болды?", "answers": ["Түркістан", "Отырар", "Сауран", "Қызылорда"], "correct": "Түркістан" },
-  { "question": "XVIII ғасырда Абылай ханның билігі не үшін маңызды болды?", "answers": ["Халықты біріктіру", "Жерді бөлісу", "Сауда жолдарын жабу", "Әскери күшті азайту"], "correct": "Халықты біріктіру" },
-  { "question": "Қазақ жерінде «Сақтар» тайпасының өмір сүрген кезеңі?", "answers": ["б.з.д. VII–III ғғ.", "б.з.д. I–I ғғ.", "б.з.д. V–II ғғ.", "б.з.д. IX–V ғғ."], "correct": "б.з.д. VII–III ғғ." },
-  { "question": "Қазақ жерінде ежелгі көшпенділер қандай негізгі шаруашылықпен айналысқан?", "answers": ["Мал шаруашылығы", "Ауыл шаруашылығы", "Қолөнер", "Сауда"], "correct": "Мал шаруашылығы" },
-  { "question": "XV–XVIII ғасырларда Қазақ хандығының экономикалық негізі:", "answers": ["Мал шаруашылығы", "Ауыл шаруашылығы", "Сауда", "Қолөнер"], "correct": "Мал шаруашылығы" },
-  { "question": "XV–XVIII ғасырларда Қазақ хандығының ішкі саяси құрылымы:", "answers": ["Жүздер жүйесі", "Соттар жүйесі", "Хандық билік жоқ", "Тұрғындарды бөліп басқару"], "correct": "Жүздер жүйесі" },
-  { "question": "Қазақ хандығының ең белгілі хандарының бірі:", "answers": ["Тәуке хан", "Қабанбай батыр", "Абылай хан", "Кенесары"], "correct": "Абылай хан" },
-  { "question": "Қазақ хандығының XVII ғасырдағы сыртқы саясатындағы маңызды бағыт:", "answers": ["Ресеймен қатынастарды дамыту", "Қытайға соғысу", "Орталық Азияны жаулап алу", "Еуропамен сауда"], "correct": "Ресеймен қатынастарды дамыту" },
-  { "question": "XVII–XVIII ғасырдағы Қазақ хандығының басты қауіптері:", "answers": ["Жоңғар шапқыншылығы", "Ресей империясы", "Қытай саясаты", "Барлығы"], "correct": "Барлығы" },
-  { "question": "Қазақ хандығының Тәуке хан тұсындағы ішкі басқару жүйесі:", "answers": ["Жеті жарғы", "Жүздер жүйесі", "Сот билігі", "Жер реформасы"], "correct": "Жеті жарғы" },
-  { "question": "Қазақ хандығының Ресеймен дипломатиялық байланысы қашан басталды?", "answers": ["XVIII ғ. ортасында", "XIX ғ. басында", "XVII ғ. соңында", "XV ғ. ортасында"], "correct": "XVIII ғ. ортасында" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының басты әскери қауіптері:", "answers": ["Жоңғарлар", "Қытайлар", "Ресейлер", "Барлығы"], "correct": "Жоңғарлар" },
-  { "question": "XVIII ғасырда Қазақ хандығының қандай реформалары болды?", "answers": ["Әскери, саяси", "Сауда, білім", "Мал шаруашылығы", "Жер реформасы"], "correct": "Әскери, саяси" },
-  { "question": "Қазақ хандығының экономикасын көбіне не құраған?", "answers": ["Мал шаруашылығы", "Қолөнер", "Сауда", "Ауыл шаруашылығы"], "correct": "Мал шаруашылығы" },
-  { "question": "XV–XVIII ғасырда Қазақ хандығының мәдениеті негізінен:", "answers": ["Ауыз әдебиеті", "Сауда", "Қолөнер", "Дін"], "correct": "Ауыз әдебиеті" },
-  { "question": "XVIII ғасырда Қазақ хандығының басты әлеуметтік тобы:", "answers": ["Бектер мен би-шонжарлар", "Дәнді дақылдар", "Қала тұрғындары", "Қолөнершілер"], "correct": "Бектер мен би-шонжарлар" },
-  { "question": "XVIII ғасырда Қазақ хандығының сыртқы саясатындағы басты одақтас:", "answers": ["Ресей", "Жоңғар", "Қытай", "Орта Азия"], "correct": "Ресей" },
-  { "question": "XV–XVIII ғасырда Қазақ хандығының негізгі сауда бағыттары:", "answers": ["Ұлы Жібек жолы", "Еуропа", "Қытай", "Барлығы"], "correct": "Ұлы Жібек жолы" },
-  { "question": "XV–XVIII ғасырда Қазақ хандығының құқықтық жүйесі:", "answers": ["Жеті жарғы", "Сот билігі", "Жүздер жүйесі", "Жер реформасы"], "correct": "Жеті жарғы" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының мәдениетінде маңызды рөл атқарған:", "answers": ["Ауыз әдебиеті", "Сауда", "Әскери дәстүр", "Барлығы"], "correct": "Ауыз әдебиеті" },
-  { "question": "Қазақ хандығының басты жаулары XVII–XVIII ғасырда:", "answers": ["Жоңғарлар", "Қытай", "Ресей", "Орта Азия"], "correct": "Жоңғарлар" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының негізгі ауыл шаруашылығы өнімдері:", "answers": ["Мал және сүт өнімдері", "Дәнді дақылдар", "Жеміс", "Көкөніс"], "correct": "Мал және сүт өнімдері" },
-  { "question": "XV–XVIII ғасырда Қазақ хандығының билік жүйесі:", "answers": ["Хандық және жүздер жүйесі", "Сот билігі", "Мәслихат", "Республика"], "correct": "Хандық және жүздер жүйесі" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының маңызды экономикалық орталықтары:", "answers": ["Түркістан, Сауран", "Астана, Алматы", "Отырар, Қызылорда", "Батыс қалалары"], "correct": "Түркістан, Сауран" },
-  { "question": "XVIII ғасырда Қазақ хандығының әлеуметтік құрылымы:", "answers": ["Бектер, би-шонжарлар, қара халық", "Қолөнершілер", "Қала тұрғындары", "Шаруалар"], "correct": "Бектер, би-шонжарлар, қара халық" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының әскери күшінің негізі:", "answers": ["Жайылма әскер", "Қала гарнизоны", "Сот әскерлері", "Шаруалар"], "correct": "Жайылма әскер" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының негізгі сауда серіктестері:", "answers": ["Ресей, Қытай, Орта Азия", "Еуропа", "Мысыр", "Иран"], "correct": "Ресей, Қытай, Орта Азия" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының басты қауіптері:", "answers": ["Жоңғар шапқыншылығы", "Ресей экспансиясы", "Қытай ықпалы", "Барлығы"], "correct": "Барлығы" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының мәдени өмірінде маңызды болған:", "answers": ["Ауыз әдебиеті, фольклор", "Сауда", "Әскери дәстүр", "Барлығы"], "correct": "Ауыз әдебиеті, фольклор" },
-  { "question": "XVII–XVIII ғасырда Қазақ хандығының басқару жүйесі:", "answers": ["Жүздер мен хандар арқылы", "Сот билігі", "Республика", "Мәслихат"], "correct": "Жүздер мен хандар арқылы" },
-  { "question": "XV–XVIII ғасырда Қазақ хандығының негізгі экономикалық қызметі:", "answers": ["Мал шаруашылығы", "Ауыл шаруашылығы", "Сауда", "Қолөнер"], "correct": "Мал шаруашылығы" },
-  { "question": "Абылай хан қай ғасырда билік құрды?", "answers": ["XVII ғ.", "XVIII ғ.", "XIX ғ.", "XVI ғ."], "correct": "XVIII ғ." },
-  { "question": "Абылай ханның басты саяси мақсаты не болды?", "answers": ["Халықты біріктіру", "Жерді бөлісу", "Сауда жолдарын жабу", "Әскери күшті азайту"], "correct": "Халықты біріктіру" },
-  { "question": "Кіші жүздің құрамына кірген аймақтар:", "answers": ["Солтүстік Қазақстан", "Оңтүстік Қазақстан", "Шығыс Қазақстан", "Батыс Қазақстан"], "correct": "Оңтүстік Қазақстан" },
-  { "question": "Орта жүздің ханы XIX ғасырда кім болды?", "answers": ["Абылай хан", "Кенесары", "Жәнібек хан", "Уәли хан"], "correct": "Уәли хан" },
-  { "question": "Кенесары Қасымұлы көтерілісі қай жылдары болды?", "answers": ["1837–1847", "1843–1857", "1860–1870", "1780–1790"], "correct": "1837–1847" },
-  { "question": "XIX ғасырда қазақ қоғамындағы басты әлеуметтік топ:", "answers": ["Бектер мен би-шонжарлар", "Шаруалар", "Қолөнершілер", "Қала тұрғындары"], "correct": "Бектер мен би-шонжарлар" },
-  { "question": "XIX ғасырда қазақ жерінің Ресей империясына қосылу процесі қай ғасырда басталды?", "answers": ["XVII ғ.", "XVIII ғ.", "XIX ғ.", "XX ғ."], "correct": "XVIII ғ." },
-  { "question": "1870 жылдары Қазақстанда жүргізілген басты реформа:", "answers": ["Жер реформасы", "Білім реформасы", "Әскери реформа", "Сауда реформасы"], "correct": "Жер реформасы" },
-  { "question": "XIX ғасырда қазақ қоғамында мал шаруашылығының негізгі түрі:", "answers": ["Сиыр мен жылқы шаруашылығы", "Шошқа шаруашылығы", "Түйе шаруашылығы", "Қой мен ешкі"], "correct": "Қой мен ешкі" },
-  { "question": "Қазактардың Ресей империясына бағынышты болуының басты себебі:", "answers": ["Экономикалық байланыстар", "Қорғаныс қажеттілігі", "Мәдени ықпал", "Әлеуметтік теңсіздік"], "correct": "Қорғаныс қажеттілігі" },
-  { "question": "XIX ғасырдағы қазақ қоғамында беделді сословие:", "answers": ["Би-шонжарлар мен беклер", "Шаруалар", "Қолөнершілер", "Қала тұрғындары"], "correct": "Би-шонжарлар мен беклер" },
-  { "question": "XIX ғасырда Қазақ жеріне көшіп келген негізгі халықтар:", "answers": ["Ресей шаруалары", "Қытай", "Үнді", "Иран"], "correct": "Ресей шаруалары" },
-  { "question": "Қазақ хандығының XVIII ғасырдағы басты қауіптері:", "answers": ["Жоңғар шапқыншылығы", "Ресей экспансиясы", "Қытай ықпалы", "Барлығы"], "correct": "Барлығы" },
-  { "question": "Қазақ хандығының XVIII ғасырдағы басты одақтасы:", "answers": ["Ресей", "Қытай", "Орта Азия", "Еуропа"], "correct": "Ресей" },
-  { "question": "XIX ғасырда қазақ қоғамындағы білім беру жүйесі негізінен:", "answers": ["Мектептер мен медреселер", "Қолөнер шеберханалары", "Әскери оқу орындары", "Сот жүйесі"], "correct": "Мектептер мен медреселер" },
-  { "question": "Қазақ хандығының ішкі саяси құрылымы XVIII ғасырда:", "answers": ["Жүздер жүйесі", "Сот жүйесі", "Республика", "Мәслихат"], "correct": "Жүздер жүйесі" },
-  { "question": "XIX ғасырдағы қазақ жеріндегі сауда жолдарының басты бағыты:", "answers": ["Ұлы Жібек жолы", "Ресей ішкі жолдары", "Қытайға сауда", "Еуропа"], "correct": "Ұлы Жібек жолы" },
-  { "question": "Қазақ хандығының XVIII–XIX ғасырдағы мәдениетінде маңызды рөл атқарған:", "answers": ["Ауыз әдебиеті", "Қолөнер", "Сауда", "Әскери дәстүр"], "correct": "Ауыз әдебиеті" },
-  { "question": "XVIII ғасырда Қазақ хандығының құқықтық жүйесі:", "answers": ["Жеті жарғы", "Сот билігі", "Жүздер жүйесі", "Жер реформасы"], "correct": "Жеті жарғы" },
-  { "question": "Қазақ хандығының XVIII ғасырдағы негізгі экономикалық қызметі:", "answers": ["Мал шаруашылығы", "Ауыл шаруашылығы", "Сауда", "Қолөнер"], "correct": "Мал шаруашылығы" },
-  { "question": "Қазақ хандығының XVIII ғасырдағы әскери күшінің негізі:", "answers": ["Жайылма әскер", "Қала гарнизоны", "Сот әскерлері", "Шаруалар"], "correct": "Жайылма әскер" },
-  { "question": "Абылай ханның ел басқарудағы басты жетістігі:", "answers": ["Жүздерді біріктіру", "Жерді бөлу", "Сауда жолдарын жабу", "Әскери күшті азайту"], "correct": "Жүздерді біріктіру" },
-  { "question": "Кенесары Қасымұлы көтерілісінің басты себебі:", "answers": ["Ресей отарлау саясаты", "Қытай шапқыншылығы", "Жоңғар шапқыншылығы", "Сауда жолдарының жабылуы"], "correct": "Ресей отарлау саясаты" },
-  { "question": "XIX ғасырда қазақ қоғамында негізгі шаруашылық:", "answers": ["Мал шаруашылығы", "Ауыл шаруашылығы", "Сауда", "Қолөнер"], "correct": "Мал шаруашылығы" },
-  { "question": "XIX ғасырда Қазақ жерінде беделді әлеуметтік топ:", "answers": ["Бектер мен би-шонжарлар", "Қолөнершілер", "Шаруалар", "Қала тұрғындары"], "correct": "Бектер мен би-шонжарлар" },
-  { "question": "XIX ғасырдағы қазақ қоғамындағы негізгі әдет-ғұрыптар:", "answers": ["Жыр, ауыз әдебиеті", "Сауда", "Әскери дәстүр", "Қолөнер"], "correct": "Жыр, ауыз әдебиеті" },
-  { "question": "Қазақ хандығының XVIII–XIX ғасырдағы сыртқы саясаты:", "answers": ["Ресеймен одақтасу", "Қытайға соғысу", "Еуропамен байланыс", "Орта Азияны жаулау"], "correct": "Ресеймен одақтасу" },
-  { "question": "XIX ғасырда Қазақ жерінде Ресейдің басты ықпалы:", "answers": ["Әскери және әкімшілік", "Сауда", "Мәдени", "Қаржы"], "correct": "Әскери және әкімшілік" },
-  { "question": "Қазақ хандығының XVIII–XIX ғасырдағы басты қауіпі:", "answers": ["Жоңғар шапқыншылығы", "Ресей экспансиясы", "Қытай ықпалы", "Барлығы"], "correct": "Барлығы" },
-  { "question": "XIX ғасырда Қазақ қоғамында мал шаруашылығын дамыту үшін жасалған:", "answers": ["Қолөнер және сауда", "Жайылым жерлерін бөлу", "Мектептер ашу", "Сот жүйесін енгізу"], "correct": "Жайылым жерлерін бөлу" },
-  { "question": "Қазақ хандығының XVIII–XIX ғасырдағы мәдени өмірі:", "answers": ["Ауыз әдебиеті мен фольклор", "Сауда", "Әскери дәстүр", "Барлығы"], "correct": "Ауыз әдебиеті мен фольклор" },
-  { "question": "XVIII–XIX ғасырда Қазақ жеріндегі халық саны шамамен:", "answers": ["1–1,5 млн", "2–2,5 млн", "3–3,5 млн", "4–4,5 млн"], "correct": "2–2,5 млн" },
-  { "question": "Кенесары Қасымұлы көтерілісінде басты қарсыластары:", "answers": ["Ресей әскерлері", "Жоңғарлар", "Қытай әскерлері", "Орта Азия мемлекеттері"], "correct": "Ресей әскерлері" },
-  { "question": "XIX ғасырда қазақ жерінде мектеп ашу ісі:", "answers": ["Басым түрде медреселерде", "Қалаларда", "Ауылдарда", "Барлығы"], "correct": "Басым түрде медреселерде" },
-  { "question": "XVIII ғасырда Қазақ хандығының ішкі саясатындағы маңызды құрал:", "answers": ["Жүздер жүйесі", "Жеті жарғы", "Сот жүйесі", "Жер реформасы"], "correct": "Жүздер жүйесі" },
-  { "question": "XVIII–XIX ғасырда Қазақ хандығының әскери күшінің басты бөлігі:", "answers": ["Жайылма әскер", "Қала гарнизоны", "Сот әскерлері", "Шаруалар"], "correct": "Жайылма әскер" },
-  { "question": "XVIII–XIX ғасырда Қазақ хандығының сауда орталықтары:", "answers": ["Түркістан, Сауран, Отырар", "Астана, Алматы", "Қызылорда, Шымкент", "Батыс қалалары"], "correct": "Түркістан, Сауран, Отырар" },
-  { "question": "XVIII–XIX ғасырда Қазақ хандығының әлеуметтік құрылымы:", "answers": ["Бектер, би-шонжарлар, қара халық", "Қолөнершілер", "Қала тұрғындары", "Шаруалар"], "correct": "Бектер, би-шонжарлар, қара халық" },
-  { "question": "XVIII–XIX ғасырда Қазақ хандығының экономикасының басты бөлігі:", "answers": ["Мал шаруашылығы", "Ауыл шаруашылығы", "Сауда", "Қолөнер"], "correct": "Мал шаруашылығы" },
-  { "question": "Абылай ханның сыртқы саясаттағы басты бағыты:", "answers": ["Ресеймен одақтасу", "Жоңғарларға қарсы соғыс", "Қытайға соғысу", "Орта Азияны жаулау"], "correct": "Ресеймен одақтасу" },
-  { "question": "XVIII–XIX ғасырдағы Қазақ хандығының құқықтық жүйесінің негізгі дерегі:", "answers": ["Жеті жарғы", "Сот билігі", "Жүздер жүйесі", "Жер реформасы"], "correct": "Жеті жарғы" },
-  { "question": "Кенесары Қасымұлы көтерілісінің басты нәтижесі:", "answers": ["Қазақ жерін Ресей отаршылдығынан қорғау", "Жер реформасы", "Сауда жолдарын ашу", "Мектептер ашу"], "correct": "Қазақ жерін Ресей отаршылдығынан қорғау" },
-  { "question": "XVIII–XIX ғасырда Қазақ хандығының мәдениеті негізінен:", "answers": ["Ауыз әдебиеті, фольклор", "Қолөнер", "Сауда", "Әскери дәстүр"], "correct": "Ауыз әдебиеті, фольклор" },
-  { "question": "XVIII–XIX ғасырда Қазақ хандығының негізгі сауда бағыттары:", "answers": ["Ұлы Жібек жолы", "Ресей ішкі жолдары", "Қытай", "Еуропа"], "correct": "Ұлы Жібек жолы" }
+  { "question": "Which was one of the ancient tribes living in the Kazakh land?", "answers": ["Sakas", "Romans", "Byzantines", "Egyptians"], "correct": "Sakas" },
+  { "question": "When did the Early Iron Age begin in the territory of Kazakhstan?", "answers": ["8th century BC", "1st century BC", "5th century BC", "10th century BC"], "correct": "8th century BC" },
+  { "question": "What city was the capital of the Turkic Khaganate?", "answers": ["Turkistan", "Balyk", "Otrar", "Sauran"], "correct": "Balyk" },
+  { "question": "Through which region of Kazakhstan did the Great Silk Road pass?", "answers": ["North", "Central", "South", "West"], "correct": "South" },
+  { "question": "What city was the capital of the Golden Horde?", "answers": ["Sarai-Batu", "Sauran", "Turkistan", "Otrar"], "correct": "Sarai-Batu" },
+  { "question": "In which centuries was the Kipchak khanate established?", "answers": ["9th–10th centuries", "11th–12th centuries", "13th–14th centuries", "15th–16th centuries"], "correct": "11th–12th centuries" },
+  { "question": "Who was the author of the legal code 'Zheti Zhargy'?", "answers": ["Tauke Khan", "Abylai Khan", "Kenessary Kasmuly", "Esim Khan"], "correct": "Tauke Khan" },
+  { "question": "During which historical period did Baydibek Bi live?", "answers": ["Early years of the Kazakh Khanate", "Russian Empire period", "Soviet era", "20th century"], "correct": "Early years of the Kazakh Khanate" },
+  { "question": "Who were the founders of the Kazakh Khanate?", "answers": ["Kerey and Janibek Khan", "Abylai Khan and Tauke Khan", "Kenessary and Zhangir Khan", "Esim Khan and Tauke Khan"], "correct": "Kerey and Janibek Khan" },
+  { "question": "In which year was the Kazakh Khanate established?", "answers": ["1465", "1500", "1450", "1490"], "correct": "1465" },
+  { "question": "The first khanate rule of the Kazakh Khanate came from which dynasty?", "answers": ["Janibek – Kerey", "Abylai – Tauke", "Kenessary – Zhangir", "Esim – Tauke"], "correct": "Janibek – Kerey" },
+  { "question": "Which khan ruled the Kazakh land in the 15th–16th centuries?", "answers": ["Janibek Khan", "Tauke Khan", "Abylai Khan", "Kenessary Kasmuly"], "correct": "Janibek Khan" },
+  { "question": "What were the main three zhuzes (hordes) of the Kazakh Khanate in the 17th century?", "answers": ["Junior, Middle, Senior", "North, South, West", "East, South, West", "Junior, Middle, East"], "correct": "Junior, Middle, Senior" },
+  { "question": "Which city was the capital of the Kazakh Khanate in the 15th–18th centuries?", "answers": ["Turkistan", "Otrar", "Sauran", "Kyzylorda"], "correct": "Turkistan" },
+  { "question": "Why was Abylai Khan's rule important in the 18th century?", "answers": ["Unifying the people", "Dividing land", "Closing trade routes", "Reducing military power"], "correct": "Unifying the people" },
+  { "question": "The period when the 'Sakas' tribe lived in Kazakh lands?", "answers": ["7th–3rd centuries BC", "1st–1st centuries BC", "5th–2nd centuries BC", "9th–5th centuries BC"], "correct": "7th–3rd centuries BC" },
+  { "question": "What was the main economic activity of ancient nomads in Kazakh lands?", "answers": ["Animal husbandry", "Agriculture", "Handicraft", "Trade"], "correct": "Animal husbandry" },
+  { "question": "What was the economic basis of the Kazakh Khanate in the 15th–18th centuries?", "answers": ["Animal husbandry", "Agriculture", "Trade", "Handicraft"], "correct": "Animal husbandry" },
+  { "question": "What was the internal political structure of the Kazakh Khanate in the 15th–18th centuries?", "answers": ["Zhuz system", "Court system", "No khanate rule", "Dividing population for governance"], "correct": "Zhuz system" },
+  { "question": "One of the most famous khans of the Kazakh Khanate:", "answers": ["Tauke Khan", "Kabanbai Batyr", "Abylai Khan", "Kenessary"], "correct": "Abylai Khan" },
+  { "question": "An important direction in the Kazakh Khanate's foreign policy in the 17th century:", "answers": ["Developing relations with Russia", "Fighting China", "Conquering Central Asia", "Trade with Europe"], "correct": "Developing relations with Russia" },
+  { "question": "Main threats to the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Dzungar invasion", "Russian Empire", "Chinese policy", "All of the above"], "correct": "All of the above" },
+  { "question": "Internal administration system of the Kazakh Khanate under Tauke Khan:", "answers": ["Zheti Zhargy", "Zhuz system", "Court authority", "Land reform"], "correct": "Zheti Zhargy" },
+  { "question": "When did diplomatic relations between the Kazakh Khanate and Russia begin?", "answers": ["Mid-18th century", "Early 19th century", "Late 17th century", "Mid-15th century"], "correct": "Mid-18th century" },
+  { "question": "Main military threats to the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Dzungars", "Chinese", "Russians", "All of the above"], "correct": "Dzungars" },
+  { "question": "What reforms took place in the Kazakh Khanate in the 18th century?", "answers": ["Military, political", "Trade, education", "Animal husbandry", "Land reform"], "correct": "Military, political" },
+  { "question": "What mostly made up the economy of the Kazakh Khanate?", "answers": ["Animal husbandry", "Handicraft", "Trade", "Agriculture"], "correct": "Animal husbandry" },
+  { "question": "What was the main cultural base of the Kazakh Khanate in the 15th–18th centuries?", "answers": ["Oral literature", "Trade", "Handicraft", "Religion"], "correct": "Oral literature" },
+  { "question": "Main social group of the Kazakh Khanate in the 18th century:", "answers": ["Beks and bi-shonzhars", "Grain producers", "City dwellers", "Craftsmen"], "correct": "Beks and bi-shonzhars" },
+  { "question": "Main ally of the Kazakh Khanate in foreign policy in the 18th century:", "answers": ["Russia", "Dzungar", "China", "Central Asia"], "correct": "Russia" },
+  { "question": "Main trade routes of the Kazakh Khanate in the 15th–18th centuries:", "answers": ["Silk Road", "Europe", "China", "All of the above"], "correct": "Silk Road" },
+  { "question": "Legal system of the Kazakh Khanate in the 15th–18th centuries:", "answers": ["Zheti Zhargy", "Court system", "Zhuz system", "Land reform"], "correct": "Zheti Zhargy" },
+  { "question": "What played an important role in the Kazakh Khanate's culture in the 17th–18th centuries:", "answers": ["Oral literature", "Trade", "Military tradition", "All of the above"], "correct": "Oral literature" },
+  { "question": "Main enemies of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Dzungars", "China", "Russia", "Central Asia"], "correct": "Dzungars" },
+  { "question": "Main agricultural products of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Livestock and dairy products", "Grains", "Fruits", "Vegetables"], "correct": "Livestock and dairy products" },
+  { "question": "Government system of the Kazakh Khanate in the 15th–18th centuries:", "answers": ["Khanate and Zhuz system", "Court system", "Council", "Republic"], "correct": "Khanate and Zhuz system" },
+  { "question": "Important economic centers of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Turkistan, Sauran", "Astana, Almaty", "Otrar, Kyzylorda", "Western cities"], "correct": "Turkistan, Sauran" },
+  { "question": "Social structure of the Kazakh Khanate in the 18th century:", "answers": ["Beks, bi-shonzhars, common people", "Craftsmen", "City dwellers", "Peasants"], "correct": "Beks, bi-shonzhars, common people" },
+  { "question": "Basis of the Kazakh Khanate's military force in the 17th–18th centuries:", "answers": ["Nomadic army", "City garrison", "Court armies", "Peasants"], "correct": "Nomadic army" },
+  { "question": "Main trade partners of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Russia, China, Central Asia", "Europe", "Egypt", "Iran"], "correct": "Russia, China, Central Asia" },
+  { "question": "Main threats to the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Dzungar invasion", "Russian expansion", "Chinese influence", "All of the above"], "correct": "All of the above" },
+  { "question": "What was important in the cultural life of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Oral literature, folklore", "Trade", "Military tradition", "All of the above"], "correct": "Oral literature, folklore" },
+  { "question": "Administrative system of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Through Zhuzes and khans", "Court system", "Republic", "Council"], "correct": "Through Zhuzes and khans" },
+  { "question": "Main economic activity of the Kazakh Khanate in the 15th–18th centuries:", "answers": ["Animal husbandry", "Agriculture", "Trade", "Handicraft"], "correct": "Animal husbandry" },
+  { "question": "In which century did Abylai Khan rule?", "answers": ["17th century", "18th century", "19th century", "16th century"], "correct": "18th century" },
+  { "question": "Main political goal of Abylai Khan:", "answers": ["Unifying the people", "Dividing land", "Closing trade routes", "Reducing military power"], "correct": "Unifying the people" },
+  { "question": "Main ally of the Kazakh Khanate in foreign policy in the 18th century:", "answers": ["Russia", "Dzungar", "China", "Central Asia"], "correct": "Russia" },
+  { "question": "Main trade routes of the Kazakh Khanate in the 15th–18th centuries:", "answers": ["Silk Road", "Europe", "China", "All of the above"], "correct": "Silk Road" },
+  { "question": "Legal system of the Kazakh Khanate in the 15th–18th centuries:", "answers": ["Zheti Zhargy", "Court system", "Zhuz system", "Land reform"], "correct": "Zheti Zhargy" },
+  { "question": "What played an important role in the Kazakh Khanate's culture in the 17th–18th centuries:", "answers": ["Oral literature", "Trade", "Military tradition", "All of the above"], "correct": "Oral literature" },
+  { "question": "Main enemies of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Dzungars", "China", "Russia", "Central Asia"], "correct": "Dzungars" },
+  { "question": "Main agricultural products of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Livestock and dairy products", "Grains", "Fruits", "Vegetables"], "correct": "Livestock and dairy products" },
+  { "question": "Government system of the Kazakh Khanate in the 15th–18th centuries:", "answers": ["Khanate and Zhuz system", "Court system", "Council", "Republic"], "correct": "Khanate and Zhuz system" },
+  { "question": "Important economic centers of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Turkistan, Sauran", "Astana, Almaty", "Otrar, Kyzylorda", "Western cities"], "correct": "Turkistan, Sauran" },
+  { "question": "Social structure of the Kazakh Khanate in the 18th century:", "answers": ["Beks, bi-shonzhars, common people", "Craftsmen", "City dwellers", "Peasants"], "correct": "Beks, bi-shonzhars, common people" },
+  { "question": "Basis of the Kazakh Khanate's military force in the 17th–18th centuries:", "answers": ["Nomadic army", "City garrison", "Court armies", "Peasants"], "correct": "Nomadic army" },
+  { "question": "Main trade partners of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Russia, China, Central Asia", "Europe", "Egypt", "Iran"], "correct": "Russia, China, Central Asia" },
+  { "question": "Main threats to the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Dzungar invasion", "Russian expansion", "Chinese influence", "All of the above"], "correct": "All of the above" },
+  { "question": "What was important in the cultural life of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Oral literature, folklore", "Trade", "Military tradition", "All of the above"], "correct": "Oral literature, folklore" },
+  { "question": "Administrative system of the Kazakh Khanate in the 17th–18th centuries:", "answers": ["Through Zhuzes and khans", "Court system", "Republic", "Council"], "correct": "Through Zhuzes and khans" },
+  { "question": "Main economic activity of the Kazakh Khanate in the 15th–18th centuries:", "answers": ["Animal husbandry", "Agriculture", "Trade", "Handicraft"], "correct": "Animal husbandry" },
+  { "question": "In which century did Abylai Khan rule?", "answers": ["17th century", "18th century", "19th century", "16th century"], "correct": "18th century" },
+  { "question": "Main political goal of Abylai Khan:", "answers": ["Unifying the people", "Dividing land", "Closing trade routes", "Reducing military power"], "correct": "Unifying the people" },
+  { "question": "Main reason for Kenesary Kasymuly’s uprising:", "answers": ["Russian colonization policy", "Chinese invasion", "Dzungar invasion", "Closure of trade routes"], "correct": "Russian colonization policy" },
+  { "question": "Main economy of Kazakh society in the 19th century:", "answers": ["Animal husbandry", "Agriculture", "Trade", "Handicraft"], "correct": "Animal husbandry" },
+  { "question": "Prominent social group in Kazakh lands in the 19th century:", "answers": ["Beks and bi-shonzhars", "Craftsmen", "Peasants", "City dwellers"], "correct": "Beks and bi-shonzhars" },
+  { "question": "Main customs and traditions of Kazakh society in the 19th century:", "answers": ["Epic, oral literature", "Trade", "Military tradition", "Handicraft"], "correct": "Epic, oral literature" },
+  { "question": "Foreign policy of the Kazakh Khanate in the 18th–19th centuries:", "answers": ["Alliance with Russia", "War with China", "Relations with Europe", "Conquest of Central Asia"], "correct": "Alliance with Russia" },
+  { "question": "Main Russian influence in Kazakh lands in the 19th century:", "answers": ["Military and administrative", "Trade", "Cultural", "Financial"], "correct": "Military and administrative" },
+  { "question": "Main threat to the Kazakh Khanate in the 18th–19th centuries:", "answers": ["Dzungar invasion", "Russian expansion", "Chinese influence", "All of the above"], "correct": "All of the above" },
+  { "question": "What was done to develop animal husbandry in 19th-century Kazakh society:", "answers": ["Handicraft and trade", "Distribution of pastures", "Opening schools", "Introducing court system"], "correct": "Distribution of pastures" },
+  { "question": "Cultural life of the Kazakh Khanate in the 18th–19th centuries:", "answers": ["Oral literature and folklore", "Trade", "Military tradition", "All of the above"], "correct": "Oral literature and folklore" },
+  { "question": "Approximate population of Kazakh lands in the 18th–19th centuries:", "answers": ["1–1.5 million", "2–2.5 million", "3–3.5 million", "4–4.5 million"], "correct": "2–2.5 million" },
+  { "question": "Main opponents in Kenesary Kasymuly’s uprising:", "answers": ["Russian troops", "Dzungars", "Chinese troops", "Central Asian states"], "correct": "Russian troops" },
+  { "question": "School opening in Kazakh lands in the 19th century:", "answers": ["Mainly in madrasahs", "In cities", "In villages", "All of the above"], "correct": "Mainly in madrasahs" },
+  { "question": "Important tool in internal policy of the Kazakh Khanate in the 18th century:", "answers": ["Zhuz system", "Zheti Zhargy", "Court system", "Land reform"], "correct": "Zhuz system" },
+  { "question": "Main part of the Kazakh Khanate's military force in the 18th–19th centuries:", "answers": ["Nomadic army", "City garrison", "Court armies", "Peasants"], "correct": "Nomadic army" },
+  { "question": "Trade centers of the Kazakh Khanate in the 18th–19th centuries:", "answers": ["Turkistan, Sauran, Otrar", "Astana, Almaty", "Kyzylorda, Shymkent", "Western cities"], "correct": "Turkistan, Sauran, Otrar" },
+  { "question": "Social structure of the Kazakh Khanate in the 18th–19th centuries:", "answers": ["Beks, bi-shonzhars, common people", "Craftsmen", "City dwellers", "Peasants"], "correct": "Beks, bi-shonzhars, common people" },
+  { "question": "Main part of the Kazakh Khanate's economy in the 18th–19th centuries:", "answers": ["Animal husbandry", "Agriculture", "Trade", "Handicraft"], "correct": "Animal husbandry" },
+  { "question": "Ablai Khan's main direction in foreign policy:", "answers": ["Alliance with Russia", "War against the Dzungars", "War with China", "Conquest of Central Asia"], "correct": "Alliance with Russia" },
+  { "question": "Main legal source of the Kazakh Khanate in the 18th–19th centuries:", "answers": ["Zheti Zhargy", "Court system", "Zhuz system", "Land reform"], "correct": "Zheti Zhargy" },
+  { "question": "Main outcome of Kenesary Kasymuly’s uprising:", "answers": ["Protection of Kazakh lands from Russian colonization", "Land reform", "Opening trade routes", "Opening schools"], "correct": "Protection of Kazakh lands from Russian colonization" },
+  { "question": "Culture of the Kazakh Khanate in the 18th–19th centuries was mainly:", "answers": ["Oral literature, folklore", "Handicraft", "Trade", "Military tradition"], "correct": "Oral literature, folklore" },
+  { "question": "Main trade routes of the Kazakh Khanate in the 18th–19th centuries:", "answers": ["Great Silk Road", "Internal Russian routes", "China", "Europe"], "correct": "Great Silk Road" },
+  { "question": "What was the main reason for the incorporation of Kazakh lands into the Russian Empire in the 19th century?", "answers": ["Need for defense", "Trade routes", "Cultural influence", "Agricultural development"], "correct": "Need for defense" },
+  { "question": "Who was the khan of the Junior Zhuz in the 19th century?", "answers": ["Abilkayyr Khan", "Zhangir Khan", "Uali Khan", "Ablai Khan"], "correct": "Uali Khan" },
+  { "question": "Which khan ruled the Middle Zhuz in the 19th century?", "answers": ["Zhangir Khan", "Abilkayyr Khan", "Kenessary Kasymuly", "Tauke Khan"], "correct": "Zhangir Khan" },
+  { "question": "What was the main goal of Kenessary Kasymuly's uprising?", "answers": ["To resist Russian colonization", "War against China", "Implement land reform", "Open trade routes"], "correct": "To resist Russian colonization" },
+  { "question": "What was the main type of economy in Kazakh society in the 19th century?", "answers": ["Animal husbandry", "Agriculture", "Handicrafts", "Trade"], "correct": "Animal husbandry" },
+  { "question": "Where were official schools mostly opened in Kazakh lands in the 19th century?", "answers": ["In madrasas", "In city centers", "In villages", "In military forts"], "correct": "In madrasas" },
+  { "question": "When did the first telegraph and postal system appear in Kazakh lands in the 19th century?", "answers": ["1860–1870", "1840–1850", "1820–1830", "1880–1890"], "correct": "1860–1870" },
+  { "question": "Which social group was influential in Kazakh society in the 19th century?", "answers": ["Beks and bi-shonzhars", "Artisans", "Peasants", "City residents"], "correct": "Beks and bi-shonzhars" },
+  { "question": "What was the main influence of Russia on Kazakh lands in the 19th century?", "answers": ["Administrative and military", "Trade", "Cultural", "Financial"], "correct": "Administrative and military" },
+  { "question": "What was the main measure to develop animal husbandry in Kazakh society in the 19th century?", "answers": ["Allocation of pastures", "Development of handicrafts", "Opening trade centers", "Opening schools"], "correct": "Allocation of pastures" },
+  { "question": "One of the largest uprisings in Kazakh lands in the 19th century:", "answers": ["Kenessary Kasymuly uprising", "Zhangir Khan uprising", "Tauke Khan uprising", "Ablai Khan uprising"], "correct": "Kenessary Kasymuly uprising" },
+  { "question": "How was education mainly conducted in Kazakh society in the 19th century?", "answers": ["In madrasas", "In schools", "In military academies", "In cities"], "correct": "In madrasas" },
+  { "question": "What was the main change after Kazakh lands joined the Russian Empire in the 19th century?", "answers": ["Introduction of administrative governance", "Stopping animal husbandry", "Closing trade routes", "Eliminating handicrafts"], "correct": "Introduction of administrative governance" },
+  { "question": "In which region did new trade centers increase in the 19th century?", "answers": ["Southern Kazakhstan", "Northern Kazakhstan", "Eastern Kazakhstan", "Western Kazakhstan"], "correct": "Southern Kazakhstan" },
+  { "question": "Who were the main opponents in Kenessary Kasymuly's uprising?", "answers": ["Russian troops", "Zhongar", "Chinese troops", "Central Asian states"], "correct": "Russian troops" },
+  { "question": "What was the main focus of cultural life in Kazakh society in the 19th century?", "answers": ["Oral literature and folklore", "Handicrafts", "Trade", "Military tradition"], "correct": "Oral literature and folklore" },
+  { "question": "What were the main trade routes for Kazakhs in the 19th century?", "answers": ["The Great Silk Road", "Internal Russian roads", "China", "Europe"], "correct": "The Great Silk Road" },
+  { "question": "What were the main customs and traditions in Kazakh society in the 19th century?", "answers": ["Epic poems and oral literature", "Trade", "Military tradition", "Handicrafts"], "correct": "Epic poems and oral literature" },
+  { "question": "What was the main economic resource for Kazakhs in the 19th century?", "answers": ["Animal husbandry", "Agriculture", "Handicrafts", "Trade"], "correct": "Animal husbandry" },
+  { "question": "What administrative system was officially introduced in Kazakh lands in the 19th century?", "answers": ["District and county administration", "Zhuz system", "Maslikhat", "Republic"], "correct": "District and county administration" },
+  { "question": "What was the main part of the army in Kazakh society in the 19th century?", "answers": ["Nomadic army", "City garrison", "Court troops", "Peasants"], "correct": "Nomadic army" },
+  { "question": "What role did influential bi-shonzhars play in the 19th century?", "answers": ["Conducting court and administrative affairs", "Controlling animal husbandry", "Conducting trade", "Military affairs"], "correct": "Conducting court and administrative affairs" },
+  { "question": "What was the main issue in education for Kazakhs in the 19th century?", "answers": ["Lack of schools", "Shortage of trade", "Lack of military preparation", "Underdeveloped handicrafts"], "correct": "Lack of schools" },
+  { "question": "Where were Russian military forts mostly located in Kazakh lands in the 19th century?", "answers": ["Northern and central regions", "South", "East", "West"], "correct": "Northern and central regions" },
+  { "question": "Which issue caused the main land conflict in the 19th century?", "answers": ["Allocation of pastures", "Allocation of village lands", "Allocation of trade lands", "Urban lands"], "correct": "Allocation of pastures" },
+  { "question": "Who were the main supporters of Kazakhs during Kenessary Kasymuly's uprising?", "answers": ["Common people", "Bi-shonzhars", "Russian peasants", "City residents"], "correct": "Common people" },
+  { "question": "What was the culture of Kazakh society in the 19th century?", "answers": ["Oral literature and folklore", "Trade", "Handicrafts", "Military tradition"], "correct": "Oral literature and folklore" },
+  { "question": "Which city developed as a trade center in the 19th century?", "answers": ["Turkistan", "Almaty", "Otrar", "Sauran"], "correct": "Turkistan" },
+  { "question": "What was the main direction of animal husbandry in the 19th century?", "answers": ["Sheep and horses", "Cattle and camels", "Pigs", "All"], "correct": "Sheep and horses" },
+  { "question": "What was the goal of the Russian army in Kazakh lands in the 19th century?", "answers": ["Colonization and control", "Open trade", "Cultural influence", "Administrative reforms"], "correct": "Colonization and control" },
+  { "question": "What was the main legal system in Kazakh society in the 19th century?", "answers": ["Zhuzes and khan rule", "Madrasas", "Russian administration", "Maslikhat"], "correct": "Zhuzes and khan rule" },
+  { "question": "Which factor influenced Kazakh culture in the 19th century?", "answers": ["Oral literature and folklore", "Trade", "Military tradition", "All"], "correct": "Oral literature and folklore" },
+  { "question": "What was the main economic problem in Kazakh lands in the 19th century?", "answers": ["Shortage of pastures", "Closure of trade routes", "Underdeveloped handicrafts", "Lack of schools"], "correct": "Shortage of pastures" },
+  { "question": "What was the main social group in Kazakh society in the 19th century?", "answers": ["Beks and bi-shonzhars", "Artisans", "Peasants", "City residents"], "correct": "Beks and bi-shonzhars" },
+  { "question": "What was the main result of Kenessary Kasymuly's uprising in the 19th century?", "answers": ["Protecting Kazakh lands from Russian colonization", "Land reform", "Opening trade routes", "Opening schools"], "correct": "Protecting Kazakh lands from Russian colonization" },
+  { "question": "One of the largest uprisings in Kazakh lands in the 19th century:", "answers": ["Kenessary Kasymuly uprising", "Zhangir Khan uprising", "Ablai Khan uprising", "Tauke Khan uprising"], "correct": "Kenessary Kasymuly uprising" },
+  { "question": "Where were most schools located in the 19th century?", "answers": ["In madrasas", "In city centers", "In villages", "In military forts"], "correct": "In madrasas" },
+  { "question": "What was the main trade route for Kazakhs in the 19th century?", "answers": ["The Great Silk Road", "Internal Russian roads", "Trade with China", "Europe"], "correct": "The Great Silk Road" },
+  { "question": "Which administrative system was officially introduced in Kazakh lands in the 19th century?", "answers": ["District and county administration", "Zhuz system", "Maslikhat", "Republic"], "correct": "District and county administration" },
+  { "question": "What was the main part of the army in Kazakh lands in the 19th century?", "answers": ["Nomadic army", "City garrison", "Court troops", "Peasants"], "correct": "Nomadic army" },
+  { "question": "What was the goal of the Russian army in Kazakh lands in the 19th century?", "answers": ["Colonization and control", "Open trade", "Cultural influence", "Administrative reforms"], "correct": "Colonization and control" },
+  { "question": "What was the culture of Kazakh society in the 19th century?", "answers": ["Oral literature and folklore", "Trade", "Handicrafts", "Military tradition"], "correct": "Oral literature and folklore" },
+  { "question": "What was the main issue in education in Kazakh lands in the 19th century?", "answers": ["Lack of schools", "Shortage of trade", "Lack of military preparation", "Underdeveloped handicrafts"], "correct": "Lack of schools" },
+  { "question": "What was the main direction of animal husbandry in Kazakh society in the 19th century?", "answers": ["Sheep and horses", "Cattle and camels", "Pigs", "All"], "correct": "Sheep and horses" },
+  { "question": "What was the main economic resource for Kazakhs in the 19th century?", "answers": ["Animal husbandry", "Agriculture", "Handicrafts", "Trade"], "correct": "Animal husbandry" },
+  { "question": "Who were the main opponents in Kenessary Kasymuly's uprising in Kazakh lands in the 19th century?", "answers": ["Russian troops", "Zhongar", "Chinese troops", "Central Asian states"], "correct": "Russian troops" }
 ];
 
-// --- Айнымалылар ---
 let current = 0;
 let score = 0;
 let timer;
 let timeLeft = 30;
 let selectedQuestions = [];
 
-// --- Элементтер ---
 const startBtn = document.getElementById("startBtn");
 const quizBox = document.getElementById("quizBox");
 const questionEl = document.getElementById("question");
@@ -524,7 +564,6 @@ const resultBox = document.getElementById("resultBox");
 const finalScore = document.getElementById("finalScore");
 const restartBtn = document.getElementById("restartBtn");
 
-// --- Аралас функция ---
 function shuffleArray(array){
     for(let i=array.length-1; i>0; i--){
         const j = Math.floor(Math.random()*(i+1));
@@ -548,7 +587,6 @@ startBtn.addEventListener("click", () => {
     showQuestion();
 });
 
-// --- Сұрақ көрсету ---
 function showQuestion(){
     const q = selectedQuestions[current];
     questionEl.innerText = `${current + 1}. ${q.question}`;
@@ -584,7 +622,7 @@ if(timeLeft <= 5){
 
     if(answer === q.correct){
         btn.style.backgroundColor="green";
-        feedback.innerText="Дұрыс! 5 балл";
+        feedback.innerText="Correct! 5 points";
         feedback.style.color="green";
         score += 5;
         feedbackBox.style.display="block";
@@ -605,7 +643,6 @@ if(timeLeft <= 5){
     });
 }
 
-// --- Қате жауап ---
 function handleWrongAnswer(){
     Array.from(answersDiv.children).forEach(b=>{
         b.disabled = true;
@@ -613,19 +650,17 @@ function handleWrongAnswer(){
             b.style.backgroundColor = "green";
         }
     });
-    feedback.innerText="Қате! 0 балл";
+    feedback.innerText="Wrong! 0 points";
     feedback.style.color="red";
     feedbackBox.style.display="block";
     nextBtn.style.display="none";
     playGameBtn.style.display="inline-block";
     skipBtn.style.display="inline-block";
 
-    // ❌ Қате дыбысты қосу
     const wrongSound = document.getElementById("wrongSound");
     wrongSound.currentTime = 0;
     wrongSound.play();
 }
-// --- Келесі сұрақ ---
 nextBtn.addEventListener("click", ()=>{
     current++;
     if(current < selectedQuestions.length){
@@ -635,7 +670,6 @@ nextBtn.addEventListener("click", ()=>{
     }
 });
 
-// --- Бастарту батырмасы ---
 skipBtn.addEventListener("click", ()=>{ 
     showResults(true);   // 🔥 failed = true
 });
@@ -653,14 +687,14 @@ function showResults(failed = false){
 
     if(failed){
         document.querySelector(".resultInner h2").innerText =
-            "Сіз барлық сұрақтарға жауап бере алмадыңыз!";
+            "You did not answer all the questions!";
     } else {
         document.querySelector(".resultInner h2").innerText =
-            "Сіз барлық сұрақтарға жауап бердіңіз!";
+            "You have answered all the questions!";
     }
 
     finalScore.innerText =
-        `Жалпы ұпайыңыз: ${score} балл\nНәтиже: ${percent}%`;
+        `Your total score: ${score} points\nResult: ${percent}%`;
 
     showGrade(percent);
 }
@@ -669,13 +703,13 @@ function showGrade(percent){
     let gradeText = "";
 
     if(percent >= 85){
-        gradeText = "🏆 Өте жақсы!";
+        gradeText = "🏆 Excellent!";
     } else if(percent >= 60){
-        gradeText = "👍 Жақсы!";
+        gradeText = "👍 Good!";
     } else if(percent >= 40){
-        gradeText = "🙂 Орташа!";
+        gradeText = "🙂 Average!";
     } else {
-        gradeText = "📚 Қайталап оқу керек!";
+        gradeText = "📚 Needs to be reviewed!";
     }
 
     finalScore.innerText += `\nБаға: ${gradeText}`;
@@ -695,7 +729,7 @@ function boxNumberGame({ showFullBg = false } = {}) {
     popup.style.textAlign = "center";
     popup.style.zIndex = "6000";
 
-    popup.innerHTML = "<h3>Сандарды есте сақта!</h3>";
+    popup.innerHTML = "<h3>Remember the numbers!</h3>";
     document.body.appendChild(popup);
 
     const numbers = [1,2,3,4,5,6];
@@ -732,7 +766,7 @@ function boxNumberGame({ showFullBg = false } = {}) {
     }
 
     const hideBtn = document.createElement("button");
-    hideBtn.innerText = "Жасыру";
+    hideBtn.innerText = "Hide";
     hideBtn.style.marginTop = "20px";
     popup.appendChild(hideBtn);
 
@@ -741,14 +775,14 @@ function boxNumberGame({ showFullBg = false } = {}) {
     const clickSound = document.getElementById("clickSound");
 
     hideBtn.onclick = () => {
-        clickSound.currentTime = 0;  // дыбысты қайта бастау
+        clickSound.currentTime = 0;  
         clickSound.play();
 
         boxes.forEach(box => box.innerText = "?");
         hideBtn.remove();
 
         const info = document.createElement("p");
-        info.innerHTML = `<b>Табу керек сандар:</b> ${targetNumbers.join(", ")}`;
+        info.innerHTML = `<b>Numbers to find:</b> ${targetNumbers.join(", ")}`;
         info.style.marginTop = "15px";
         popup.appendChild(info);
 
@@ -800,7 +834,7 @@ playGameBtn.addEventListener("click", () => {
     gameStartContainer.style.display = "flex";  
     document.getElementById("fullGameBg").style.display = "block"; 
 
-    timerEl.style.display = "none"; // ❌ таймерді ойын фондарында жасыру
+    timerEl.style.display = "none"; 
 });
 
 function nextAfterGame(){
@@ -808,7 +842,6 @@ function nextAfterGame(){
     if(current < selectedQuestions.length){
         showQuestion();
     } else {
-        // Ойын аяқталған кезде толық фонды жасыру
         document.getElementById("fullGameBg").style.display = "none";
         showResults();
     }
@@ -824,44 +857,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const fullGameBg = document.getElementById("fullGameBg");
     const gameStartContainer = document.getElementById("gameStartContainer");
 
-    // Ережелерді оқу батырмасы
     rulesBtn.addEventListener("click", () => {
         document.getElementById("rulesModal").style.display = "flex";
-        backToWelcomeBtn.style.display = "none"; // 🔥 ОСЫ
+        backToWelcomeBtn.style.display = "none"; 
         rulesModal.style.display = "block";
-        rulesBtn.style.display = "none"; // модаль ашылғанда уақытша жасыру
+        rulesBtn.style.display = "none"; 
     });
 
     closeRulesBtn.addEventListener("click", () => {
         document.getElementById("rulesModal").style.display = "none";
-        backToWelcomeBtn.style.display = "inline-block"; // 🔥 ҚАЙТА ШЫҒАДЫ
+        backToWelcomeBtn.style.display = "inline-block"; 
         rulesModal.style.display = "none";
-        rulesBtn.style.display = "inline-block"; // қайта көрсету
+        rulesBtn.style.display = "inline-block"; 
     });
 
-    // Қош келдіңіз экраны
     enterBtn.addEventListener("click", () => {
         welcomeScreen.style.display = "none";
     });
 
-    // Ойын ойнау батырмасы (кіші фонмен)
     playGameBtn.addEventListener("click", () => {
-        gameStartContainer.style.display = "flex";   // кіші фон
-        fullGameBg.style.display = "block";          // толық фон
+        gameStartContainer.style.display = "flex";  
+        fullGameBg.style.display = "block";         
     });
 
-    // Тестті қайта бастау
     restartBtn.addEventListener("click", () => {
 
-    // Бастау бетін көрсету
         startBtn.style.display = "inline-block";
         rulesBtn.style.display = "inline-block";
         backToWelcomeBtn.style.display = "inline-block";
 
-    // Ескерту қайта шығу керек
         document.getElementById("startWarning").style.display = "block";
 
-    // Тест бөліктерін жасыру
         quizBox.style.display = "none";
         timerEl.style.display = "none";
         resultBox.style.display = "none";
@@ -877,10 +903,10 @@ document.addEventListener("DOMContentLoaded", () => {
         current = 0;
         score = 0;
 
-        startBtn.style.display = "inline-block";  // бастау батырмасы
-        rulesBtn.style.display = "inline-block";  // ережелерді оқу батырмасы
+        startBtn.style.display = "inline-block";  
+        rulesBtn.style.display = "inline-block";  
         backToWelcomeBtn.style.display = "inline-block";
-        rulesModal.style.display = "none";        // егер ашық болса, жабу
+        rulesModal.style.display = "none";      
     });
 });
 
@@ -889,14 +915,13 @@ document.getElementById("startMiniGameBtn").addEventListener("click", () => {
     fullBg.style.display = "block";       
     document.getElementById("gameStartContainer").style.display = "none";
 
-    timerEl.style.display = "none"; // ❌ таймерді жасыру
+    timerEl.style.display = "none"; 
     boxNumberGame({ showFullBg: true });
 });
 
 const backToWelcomeBtn = document.getElementById("backToWelcomeBtn");
 
 backToWelcomeBtn.addEventListener("click", () => {
-    // Барлық тест элементтерін жасыру
     quizBox.style.display = "none";
     resultBox.style.display = "none";
     timerEl.style.display = "none";
@@ -905,27 +930,22 @@ backToWelcomeBtn.addEventListener("click", () => {
     gameStartContainer.style.display = "none";
     fullGameBg.style.display = "none";
 
-    // Бастау батырмаларын жасыру
     startBtn.style.display = "none";
     rulesBtn.style.display = "none";
     backToWelcomeBtn.style.display = "none";
 
-    // Қош келдіңіз экранын көрсету
     welcomeScreen.style.display = "block";
 
-    // Айнымалыларды reset жасау
     current = 0;
     score = 0;
 
-    // 🎵 Музыка тоқтату
     music.pause();
-    music.currentTime = 0;  // басынан бастау
-    musicBtn.innerText = "Музыка: Ойнату"; // батырманың мәтінін жаңарту
+    music.currentTime = 0; 
+    musicBtn.innerText = "Music: Play"; 
 });
 
 const clickSound = document.getElementById("clickSound");
 
-// Барлық негізгі батырмаларға дыбыс қосу
 const mainButtons = [
   document.getElementById("enterBtn"),
   document.getElementById("startBtn"),
@@ -949,12 +969,15 @@ mainButtons.forEach(btn => {
     }
 });
 
-// ================= МУЗЫКА ЖҮЙЕСІ =================
-
 const musicList = [
     "music1.mp3",
     "music2.mp3",
-    "music3.mp3"
+    "music3.mp3",
+    "music4.mp3",
+    "music5.mp3",
+    "music6.mp3",
+    "music7.mp3"
+
 ];
 
 let currentTrack = 0;
@@ -964,10 +987,8 @@ const musicBtn = document.getElementById("musicBtn");
 const nextMusicBtn = document.getElementById("nextMusicBtn");
 const prevMusicBtn = document.getElementById("prevMusicBtn");
 
-// Бастапқыда музыка жоқ
 bgMusic.src = "";
 
-// 🔊 Enter басқанда автоматты қосу
 document.getElementById("enterBtn").addEventListener("click", () => {
 
     currentTrack = 0;
@@ -977,7 +998,6 @@ document.getElementById("enterBtn").addEventListener("click", () => {
     musicBtn.innerText = "🔊";
 });
 
-// 🔇 Ойнату / Тоқтату
 musicBtn.addEventListener("click", () => {
     if(bgMusic.paused){
         bgMusic.play();
@@ -988,7 +1008,6 @@ musicBtn.addEventListener("click", () => {
     }
 });
 
-// ➡️ Келесі
 nextMusicBtn.addEventListener("click", () => {
 
     currentTrack++;
@@ -1001,7 +1020,6 @@ nextMusicBtn.addEventListener("click", () => {
     bgMusic.play();
 });
 
-// ⬅️ Алдыңғы
 prevMusicBtn.addEventListener("click", () => {
 
     currentTrack--;
@@ -1014,12 +1032,21 @@ prevMusicBtn.addEventListener("click", () => {
     bgMusic.play();
 });
 
-// 🔥 Welcome-ке қайтқанда музыка тоқтайды
 backToWelcomeBtn.addEventListener("click", () => {
     bgMusic.pause();
     bgMusic.currentTime = 0;
     bgMusic.src = "";
     musicBtn.innerText = "🔇";
+});
+
+// Музыка аяқталғанда келесі трекке автоматты өту
+bgMusic.addEventListener("ended", () => {
+    currentTrack++;
+    if(currentTrack >= musicList.length){
+        currentTrack = 0; // соңғы тректен кейін біріншіге оралу
+    }
+    bgMusic.src = musicList[currentTrack];
+    bgMusic.play();
 });
 
 </script>
